@@ -1,0 +1,131 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+PaperSpace
+</name>
+</assembly>
+<members>
+<member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+	<summary>
+CreateInstance
+</summary>
+</member><member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+	<summary>
+GetPropertyValue
+</summary>
+</member><member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+	<summary>
+SetPropertyValue
+</summary>
+</member><member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+	<summary>
+CreateDelegate
+</summary>
+</member><member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+	<summary>
+AddEventHandler
+</summary>
+</member><member name="T:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+	<summary>
+GeneratedInternalTypeHelper
+</summary>
+</member><member name="M:WpfApplication1.Application.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:WpfApplication1.Application.Main">
+	<summary>
+Application Entry Point.
+</summary>
+</member><member name="T:WpfApplication1.Application">
+	<summary>
+Application
+</summary>
+</member><member name="M:WpfApplication1.MainWindow.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:WpfApplication1.DrawingsUserControl.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="P:WpfApplication1.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:WpfApplication1.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:WpfApplication1.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:WpfApplication1.MainWindow">
+	<summary>
+ Interaction logic for MainWindow.xaml
+ </summary>
+</member><member name="P:WpfApplication1.DrawingsUserControl.Model">
+	<summary>
+ Gets or sets the model.
+ </summary>
+</member><member name="M:WpfApplication1.DrawingsUserControl.AddSheet(System.String,devDept.Geometry.linearUnitsType,devDept.CustomControls.formatType,System.Boolean)">
+	<summary>
+ Create a new sheet with some default views according to the format type.
+ </summary>
+	<param name="name">The name for the sheet.</param>
+	<param name="units">The measurement system type for the sheet.</param>
+	<param name="formatType">The <see cref="T:devDept.CustomControls.formatType"/>.</param>
+	<remarks>
+ It builds the format block and it adds the created BlockReference to the Sheet and the block to the Drawings Blocks collection.
+ </remarks>
+</member><member name="M:WpfApplication1.DrawingsUserControl.AddDefaultSheet">
+	<summary>
+ Adds a default sheet.
+ </summary>
+</member><member name="M:WpfApplication1.DrawingsUserControl.Clear">
+	<summary>
+ Clears the drawings and the treePanel.
+ </summary>
+</member><member name="M:WpfApplication1.DrawingsUserControl.EnableUIElements(System.Boolean)">
+	<summary>
+ Sets the enable status of the input controls.
+ </summary>
+	<param name="status"></param>
+</member><member name="M:WpfApplication1.DrawingsUserControl.ExportSheetButton_Click(System.Object,System.Windows.RoutedEventArgs)">
+	<summary>
+ Export the active sheet in the model space of the output file.
+ </summary>
+</member><member name="T:WpfApplication1.DrawingsUserControl">
+	<summary>
+ Interaction logic for DrawingsUserControl.xaml
+ </summary>
+</member><member name="M:WpfApplication1.MyDrawings.DisableDimensioning">
+	<summary>
+ Disables dimensioning and restore the default action mode (SelectVisibleByPick)
+ </summary>
+</member><member name="M:WpfApplication1.MyDrawings.EnableDimensioning">
+	<summary>
+ Enable dimensioning and set action mode to none
+ </summary>
+</member><member name="M:WpfApplication1.MyDrawings.DrawQuad(System.Drawing.Point)">
+	<summary>
+ Draws the quad that defines the snapped point
+ </summary>
+</member><member name="M:WpfApplication1.MyDrawings.DisplaySnappedVertex">
+	<summary>
+ Displays the snapped point
+ </summary>
+</member><member name="M:WpfApplication1.MyDrawings.DrawPositionMark(devDept.Geometry.Point3D,System.Double)">
+	<summary>
+ Draws a plus sign (+) at current mouse location
+ </summary>
+</member><member name="M:WpfApplication1.MyDrawings.DrawSelectionMark(System.Drawing.Point)">
+	<summary>
+ Draws the pick box at the current mouse location
+ </summary>
+</member>
+</members>
+</doc>

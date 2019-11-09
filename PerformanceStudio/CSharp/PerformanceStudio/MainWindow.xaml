@@ -1,0 +1,153 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:local="clr-namespace:PerformanceStudio"
+    xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control" 
+    xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+    xmlns:ddcc="clr-namespace:devDept.CustomControls;assembly=devDept.CustomControls.Wpf"
+    xmlns:performanceStudio="clr-namespace:PerformanceStudio"
+    x:Class="PerformanceStudio.MainWindow"
+    mc:Ignorable="d" Title="Performance Studio" Height="800" Width="1100">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0, 5, 0, 0"/>
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="{x:Type ddcc:EnumButton}">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0, 5, 0, 0"/>
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True" Margin="5">
+        <StackPanel DockPanel.Dock="Left" Margin="0, 0, 5, 0">
+            <Button x:Name="rendererButton" Content="DirectX" Click="rendererButton_Click"/>
+            <ddcc:EnumButton x:Name="displayModeEnumButton" Click="displayModeEnumButton_Click"/>
+            <ToggleButton x:Name="antiAliasingCheckBox" Click="checkBoxes_CheckedChanged" Content="AntiAliasing"/>
+            <ddcc:EnumButton x:Name="shadowModeEnumButton" Click="shadowModeEnumButton_Click"/>
+            <ToggleButton x:Name="planarCheckBox" Click="checkBoxes_CheckedChanged" Content="Planar Reflections"/>
+            <ddcc:EnumButton x:Name="structureModeEnumButton" Click="structureModeEnumButton_Click"/>
+            <ToggleButton x:Name="textureCheckBox" Click="checkBoxes_CheckedChanged" Content="Texture" />
+            <ToggleButton x:Name="transparencyCheckBox" Click="checkBoxes_CheckedChanged" IsChecked="True" Content="Transparency"/>
+            <ToggleButton x:Name="shadersCheckBox" Click="checkBoxes_CheckedChanged" Content="Shaders"/>
+            <ToggleButton x:Name="depthCheckBox" Click="checkBoxes_CheckedChanged" Content="Depth Transparency"/>
+            <ToggleButton x:Name="environmentMappingCheckBox" Click="checkBoxes_CheckedChanged" Content="Environment"/>
+            <Grid Margin="0 5 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="No. Floor"/>
+                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="1" Name="floors" Minimum="1" Value="5" Width="50" Height="22"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Bay X"/>
+                <xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Name="bayX" Minimum="1" Value="5" Width="50" Height="22"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Bay Y"/>
+                <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Name="bayY" Minimum="1" Value="5" Width="50" Height="22"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Shell Sub"/>
+                <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Name="shellSubdivisions" Minimum="1" Value="3" Width="50" Height="22"/>
+            </Grid> 
+            <ToggleButton x:Name="labelCheckBox" Click="checkBoxes_CheckedChanged" Content="Labels"/>
+            <ToggleButton x:Name="nodesCheckBox" Click="checkBoxes_CheckedChanged" Content="Nodes"/>
+            <ToggleButton x:Name="edgesCheckBox" Click="checkBoxes_CheckedChanged" Content="Edges"/>
+            <ToggleButton x:Name="pillarsCheckBox" Click="checkBoxes_CheckedChanged" IsChecked="True" Content="Pillars"/>
+            <ToggleButton x:Name="shellCheckBox" Click="checkBoxes_CheckedChanged" IsChecked="True" Content="Shells"/>
+            <ToggleButton x:Name="showBeamXCheckBox" Click="checkBoxes_CheckedChanged" IsChecked="True" Content="Show Beam X"/>
+            <ToggleButton x:Name="showBeamYCheckBox" Click="checkBoxes_CheckedChanged" IsChecked="True" Content="Show Beam Y"/>
+            <Grid Margin="0 5 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Pillars"/>
+                <Label Grid.Row="0" Grid.Column="1" Name="lColumns" Content="15"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Beams"/>
+                <Label Grid.Row="1" Grid.Column="1" Name="lBeams" Content="15"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Shell"/>
+                <Label Grid.Row="2" Grid.Column="1" Name="lShell" Content="15"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Nodes"/>
+                <Label Grid.Row="3" Grid.Column="1" Name="lJoints" Content="15"/>
+            </Grid>
+        </StackPanel>
+      <TreeView DockPanel.Dock="Right" Name="treeView1" MinWidth="180">
+        <TreeView.ItemTemplate>
+          <HierarchicalDataTemplate DataType="{x:Type performanceStudio:TreeNode}" ItemsSource="{Binding Items}" >
+            <StackPanel Orientation="Horizontal">
+              <Image Source="{Binding Icon}" Width="16" Height="16" Margin="0 0 3 0"></Image>
+              <TextBlock Text="{Binding Text}" />
+            </StackPanel>
+
+          </HierarchicalDataTemplate>
+        </TreeView.ItemTemplate>
+        <TreeView.ItemContainerStyle>
+          <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+            <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+            <Setter Property="Margin" Value="0 3 0 0"></Setter>
+          </Style>
+        </TreeView.ItemContainerStyle>
+      </TreeView>
+        <local:MyModel x:Name="model1">
+            <ddes:Model.Viewports>
+                <ddes:Viewport>
+                    <ddes:Viewport.Background>
+                        <ddgr:BackgroundSettings BottomColor="DeepSkyBlue" StyleMode="Solid" TopColor="Snow"/>
+                    </ddes:Viewport.Background>
+                    <ddes:Viewport.CoordinateSystemIcon>
+                        <ddes:CoordinateSystemIcon Lighting ="false"/>
+                    </ddes:Viewport.CoordinateSystemIcon>
+                    <ddes:Viewport.Grids>
+                        <ddes:Grid Step="10" Lighting ="false"/>
+                    </ddes:Viewport.Grids>
+                    <ddes:Viewport.OriginSymbol>
+                        <ddes:OriginSymbol Lighting ="false"/>
+                    </ddes:Viewport.OriginSymbol>
+                    <ddes:Viewport.ToolBars>
+                        <ddes:ToolBar Position="HorizontalTopCenter">
+                            <ddes:ToolBar.Buttons>
+                                <ddes:HomeToolBarButton/>
+                                <ddes:MagnifyingGlassToolBarButton/>
+                                <ddes:ZoomWindowToolBarButton/>
+                                <ddes:ZoomToolBarButton/>
+                                <ddes:PanToolBarButton/>
+                                <ddes:RotateToolBarButton/>
+                                <ddes:ZoomFitToolBarButton/>
+                            </ddes:ToolBar.Buttons>
+                        </ddes:ToolBar>
+                    </ddes:Viewport.ToolBars>
+                    <ddes:Viewport.ViewCubeIcon>
+                        <ddes:ViewCubeIcon Lighting ="false"/>
+                    </ddes:Viewport.ViewCubeIcon>
+                </ddes:Viewport>
+            </ddes:Model.Viewports>
+        </local:MyModel>
+    </DockPanel>
+</Window>

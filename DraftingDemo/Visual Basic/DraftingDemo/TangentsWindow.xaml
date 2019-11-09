@@ -1,0 +1,29 @@
+﻿<Window x:Class="TangentsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Title="Tangent curves" Height="196.434" Width="276.959">
+    <Grid Margin="0,0,2,3">
+        <GroupBox x:Name="curveTypeGroupBox" Header="Output curves type" HorizontalAlignment="Left" Height="60" Margin="10,14,0,0" VerticalAlignment="Top" Width="123">
+            <Grid HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="114" Margin="-1,0,-2,-1">
+                <RadioButton x:Name="linesRadioButton" Content="Lines"  HorizontalAlignment="Left" Height="15" Margin="4,3,0,0" VerticalAlignment="Top" Width="50" IsChecked="True"/>
+                <RadioButton x:Name="circlesRadioButton" Content="Circles" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,18,0,0"/>
+            </Grid>
+
+        </GroupBox>
+        <GroupBox x:Name="optionsGroupBox" Header="Options" HorizontalAlignment="Left" Height="64" Margin="144,14,0,0" VerticalAlignment="Top" Width="102" IsEnabled="False">
+            <Grid HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="92" Margin="0,5,-2,0">
+                <CheckBox x:Name="flipCheckBox" Content="Flip" HorizontalAlignment="Left" Margin="2,21,0,0" VerticalAlignment="Top" Height="16" Width="80"/>
+                <CheckBox x:Name="trimCheckBox" Content="Trim" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,6,0,0"/>
+            </Grid>
+
+
+        </GroupBox>
+        <Button x:Name="delectButton" Content="Select" HorizontalAlignment="Left" Click="selectButton_OnClick" VerticalAlignment="Top" Width="75" Margin="172,126,0,0"/>
+        <TextBox x:Name="radiusTextBox" HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="10.0" VerticalAlignment="Top" Width="103" Margin="144,92,0,0" IsEnabled="False"/>
+        <Label x:Name="radiusLabel" Content="Tangent circle radius" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,88,0,0" IsEnabled="False"/>
+    </Grid>
+</Window>

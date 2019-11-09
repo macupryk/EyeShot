@@ -1,0 +1,448 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+    xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+    xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+    x:Class="WpfApplication1.MainWindow"    
+    Title="MainWindow" Height="650" Width="1002" FocusManager.FocusedElement="{Binding ElementName=model1}">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+      <Setter Property="Height" Value="25"/>
+      <Setter Property="Width" Value="75"/>
+      <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+
+    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+      <Setter Property="Height" Value="25"/>
+      <Setter Property="Width" Value="75"/>
+    </Style>
+  </Window.Resources>
+
+  <Grid Margin="5">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition></ColumnDefinition>
+      <ColumnDefinition Width="Auto" MinWidth="5"></ColumnDefinition>
+      <ColumnDefinition></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition></RowDefinition>
+      <RowDefinition Height="300"></RowDefinition>
+    </Grid.RowDefinitions>
+        <DockPanel Grid.Column="0" LastChildFill="True">
+      <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0 5 0 0"/>
+            <ddes:Model Name="model1" Margin="0,0,0,-5">
+        <ddes:Model.Viewports>
+          <ddes:Viewport>
+            <ddes:Viewport.OriginSymbol>
+              <ddes:OriginSymbol Lighting="False"/>
+            </ddes:Viewport.OriginSymbol>
+            <ddes:Viewport.CoordinateSystemIcon>
+              <ddes:CoordinateSystemIcon Lighting="False"/>
+            </ddes:Viewport.CoordinateSystemIcon>
+            <ddes:Viewport.ViewCubeIcon>
+              <ddes:ViewCubeIcon Lighting="False"/>
+            </ddes:Viewport.ViewCubeIcon>
+            <ddes:Viewport.Background>
+              <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+            </ddes:Viewport.Background>
+            <ddes:Viewport.Grids>
+              <ddes:Grid Step="10" Lighting="False"/>
+            </ddes:Viewport.Grids>
+            <ddes:Viewport.ToolBars>
+              <ddes:ToolBar Position="HorizontalTopCenter">
+                <ddes:ToolBar.Buttons>
+                  <ddes:HomeToolBarButton/>
+                  <ddes:MagnifyingGlassToolBarButton/>
+                  <ddes:ZoomWindowToolBarButton/>
+                  <ddes:ZoomToolBarButton/>
+                  <ddes:PanToolBarButton/>
+                  <ddes:RotateToolBarButton/>
+                  <ddes:ZoomFitToolBarButton/>
+                </ddes:ToolBar.Buttons>
+              </ddes:ToolBar>
+            </ddes:Viewport.ToolBars>
+          </ddes:Viewport>
+        </ddes:Model.Viewports>
+      </ddes:Model>
+    </DockPanel>
+
+    <GridSplitter Name="splitContainer1" Grid.Column="1" Grid.Row="0" ResizeDirection="Columns" Width="2" Height="NaN" HorizontalAlignment="Stretch"/>
+
+        <DockPanel Grid.Column="2" Grid.Row="0" LastChildFill="True" UseLayoutRounding="True">
+      <ddes:Model Name="model2">
+        <ddes:Model.Viewports>
+          <ddes:Viewport>
+            <ddes:Viewport.OriginSymbol>
+              <ddes:OriginSymbol Lighting="False"/>
+            </ddes:Viewport.OriginSymbol>
+            <ddes:Viewport.CoordinateSystemIcon>
+              <ddes:CoordinateSystemIcon Lighting="False"/>
+            </ddes:Viewport.CoordinateSystemIcon>
+            <ddes:Viewport.ViewCubeIcon>
+              <ddes:ViewCubeIcon Lighting="False"/>
+            </ddes:Viewport.ViewCubeIcon>
+            <ddes:Viewport.Background>
+              <ddgr:BackgroundSettings StyleMode="Solid" TopColor="Black"/>
+            </ddes:Viewport.Background>
+            <ddes:Viewport.Grids>
+              <ddes:Grid Step="10" Lighting="False"/>
+            </ddes:Viewport.Grids>
+            <ddes:Viewport.ToolBars>
+              <ddes:ToolBar Position="HorizontalTopCenter">
+                <ddes:ToolBar.Buttons>
+                  <ddes:HomeToolBarButton/>
+                  <ddes:MagnifyingGlassToolBarButton/>
+                  <ddes:ZoomWindowToolBarButton/>
+                  <ddes:ZoomToolBarButton/>
+                  <ddes:PanToolBarButton/>
+                  <ddes:RotateToolBarButton/>
+                  <ddes:ZoomFitToolBarButton/>
+                </ddes:ToolBar.Buttons>
+              </ddes:ToolBar>
+            </ddes:Viewport.ToolBars>
+          </ddes:Viewport>
+        </ddes:Model.Viewports>
+      </ddes:Model>
+
+    </DockPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="942">
+            <Grid Height="292">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="73"/>
+                    <ColumnDefinition Width="42"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="44"/>
+                    <ColumnDefinition Width="46"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="46"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="137"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="29*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="1" Content="Light1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="33"/>
+                <Label Grid.Column="0" Grid.Row="2" Content="Light2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="33"/>
+                <Label Grid.Column="0" Grid.Row="3" Content="Light3" HorizontalAlignment="Left" VerticalAlignment="Center" Width="33"/>
+                <Label Grid.Column="0" Grid.Row="4" Content="Light4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="33"/>
+                <Label Grid.Column="0" Grid.Row="5" Content="Light5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="33"/>
+                <Label Grid.Column="0" Grid.Row="6" Content="Light6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="33"/>
+                <Label Grid.Column="0" Grid.Row="7" Content="Light7" HorizontalAlignment="Left" VerticalAlignment="Center" Width="33"/>
+                <Label Grid.Column="0" Grid.Row="8" Content="Light8" HorizontalAlignment="Left" VerticalAlignment="Center" Width="33"/>
+                <Label Grid.Column="0" Grid.Row="9" Content="AmbientLight" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="72"/>
+                <Label Grid.Column="1" Grid.Row="0" Content="Active" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="32"/>
+                <Label Grid.Column="2" Grid.Row="0" Content="Type" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="32"/>
+                <Label Grid.Column="3" Grid.Row="0" Content="X" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="8"/>
+                <Label Grid.Column="4" Grid.Row="0" Content="Y" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="8"/>
+                <Label Grid.Column="5" Grid.Row="0" Content="Z" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="12"/>
+                <Label Grid.Column="6" Grid.Row="0" Content="Dx" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="14" />
+                <Label Grid.Column="7" Grid.Row="0" Content="Dy" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="14" />
+                <Label Grid.Column="8" Grid.Row="0" Content="Dz" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="14" />
+                <Label Grid.Column="9" Grid.Row="0" Content="Spot Exp" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="46" />
+                <Label Grid.Column="10" Grid.Row="0" Content="Linear Attenuation" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="99" />
+                <Label Grid.Column="11" Grid.Row="0" Content="Spot Angle" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="62" />
+                <Label Grid.Column="14" Grid.Row="0" Content="Yield Shadow"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="72"/>
+
+                <!--Column Active-->
+                <CheckBox Grid.Column="1" Grid.Row="1" x:Name="activeLight1" HorizontalAlignment="Center" 
+      		VerticalAlignment="Center" Width="16" Height="16" Click="Settings_InputsChanged"/>
+                <CheckBox Grid.Column="1" Grid.Row="2" x:Name="activeLight2" HorizontalAlignment="Center" 
+      		VerticalAlignment="Center" Width="16" Height="16" Click="Settings_InputsChanged"/>
+                <CheckBox Grid.Column="1" Grid.Row="3" x:Name="activeLight3" HorizontalAlignment="Center" 
+      		VerticalAlignment="Center" Width="16" Height="16" Click="Settings_InputsChanged"/>
+                <CheckBox Grid.Column="1" Grid.Row="4" x:Name="activeLight4" HorizontalAlignment="Center" 
+      		VerticalAlignment="Center" Width="16" Height="16" Click="Settings_InputsChanged"/>
+                <CheckBox Grid.Column="1" Grid.Row="5" x:Name="activeLight5" HorizontalAlignment="Center" 
+      		VerticalAlignment="Center" Width="16" Height="16" Click="Settings_InputsChanged"/>
+                <CheckBox Grid.Column="1" Grid.Row="6" x:Name="activeLight6" HorizontalAlignment="Center" 
+      		VerticalAlignment="Center" Width="16" Height="16" Click="Settings_InputsChanged"/>
+                <CheckBox Grid.Column="1" Grid.Row="7" x:Name="activeLight7" HorizontalAlignment="Center" 
+      		VerticalAlignment="Center" Width="16" Height="16" Click="Settings_InputsChanged"/>
+                <CheckBox Grid.Column="1" Grid.Row="8" x:Name="activeLight8" HorizontalAlignment="Center" 
+      		VerticalAlignment="Center" Width="16" Height="16" Click="Settings_InputsChanged"/>
+                <!--Column Type-->
+                <ComboBox Grid.Column="2" Grid.Row="1" x:Name="lightType1" SelectionChanged="Settings_InputsChanged"
+      		VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Width="76">
+                    <ComboBoxItem Content="Point" IsSelected="True"/>
+                    <ComboBoxItem Content="Spot"/>
+                    <ComboBoxItem Content="Directional"/>
+                    <ComboBoxItem Content="Directional Stationary"/>
+                </ComboBox>
+                <ComboBox Grid.Column="2" Grid.Row="2" x:Name="lightType2" VerticalAlignment="Center" Height="26" 
+      		SelectionChanged="Settings_InputsChanged" HorizontalAlignment="Center" Width="76">
+                    <ComboBoxItem Content="Point" IsSelected="True"/>
+                    <ComboBoxItem Content="Spot"/>
+                    <ComboBoxItem Content="Directional"/>
+                    <ComboBoxItem Content="Directional Stationary"/>
+                </ComboBox>
+                <ComboBox Grid.Column="2" Grid.Row="3" x:Name="lightType3" VerticalAlignment="Center" Height="26" 
+      		SelectionChanged="Settings_InputsChanged" HorizontalAlignment="Center" Width="76">
+                    <ComboBoxItem Content="Point" IsSelected="True"/>
+                    <ComboBoxItem Content="Spot"/>
+                    <ComboBoxItem Content="Directional"/>
+                    <ComboBoxItem Content="Directional Stationary"/>
+                </ComboBox>
+                <ComboBox Grid.Column="2" Grid.Row="4" x:Name="lightType4" VerticalAlignment="Center" Height="26" 
+      		SelectionChanged="Settings_InputsChanged" HorizontalAlignment="Center" Width="76">
+                    <ComboBoxItem Content="Point" IsSelected="True"/>
+                    <ComboBoxItem Content="Spot"/>
+                    <ComboBoxItem Content="Directional"/>
+                    <ComboBoxItem Content="Directional Stationary"/>
+                </ComboBox>
+                <ComboBox Grid.Column="2" Grid.Row="5" x:Name="lightType5" VerticalAlignment="Center" Height="26" 
+      		SelectionChanged="Settings_InputsChanged" HorizontalAlignment="Center" Width="76">
+                    <ComboBoxItem Content="Point" IsSelected="True"/>
+                    <ComboBoxItem Content="Spot"/>
+                    <ComboBoxItem Content="Directional"/>
+                    <ComboBoxItem Content="Directional Stationary"/>
+                </ComboBox>
+                <ComboBox Grid.Column="2" Grid.Row="6" x:Name="lightType6" VerticalAlignment="Center" Height="26" 
+      		SelectionChanged="Settings_InputsChanged" HorizontalAlignment="Center" Width="76" >
+                    <ComboBoxItem Content="Point" IsSelected="True"/>
+                    <ComboBoxItem Content="Spot"/>
+                    <ComboBoxItem Content="Directional"/>
+                    <ComboBoxItem Content="Directional Stationary"/>
+                </ComboBox>
+                <ComboBox Grid.Column="2" Grid.Row="7" x:Name="lightType7" VerticalAlignment="Center" Height="26" 
+      		SelectionChanged="Settings_InputsChanged" HorizontalAlignment="Center" Width="76" >
+                    <ComboBoxItem Content="Point" IsSelected="True"/>
+                    <ComboBoxItem Content="Spot"/>
+                    <ComboBoxItem Content="Directional"/>
+                    <ComboBoxItem Content="Directional Stationary"/>
+                </ComboBox>
+                <ComboBox Grid.Column="2" Grid.Row="8" x:Name="lightType8" VerticalAlignment="Center" Height="26" 
+      		SelectionChanged="Settings_InputsChanged" HorizontalAlignment="Center" Width="76" >
+                    <ComboBoxItem Content="Point" IsSelected="True"/>
+                    <ComboBoxItem Content="Spot"/>
+                    <ComboBoxItem Content="Directional"/>
+                    <ComboBoxItem Content="Directional Stationary"/>
+                </ComboBox>
+                <!-- Column X -->
+                <TextBox Grid.Column="3" Grid.Row="1" x:Name="lightX1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="3" Grid.Row="2" x:Name="lightX2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="-5" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="3" Grid.Row="3" x:Name="lightX3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="3" Grid.Row="4" x:Name="lightX4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="-5" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="3" Grid.Row="5" x:Name="lightX5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="3" Grid.Row="6" x:Name="lightX6" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="3" Grid.Row="7" x:Name="lightX7" HorizontalAlignment="Center" TextWrapping="Wrap" Text="-15" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="3" Grid.Row="8" x:Name="lightX8" HorizontalAlignment="Center" TextWrapping="Wrap" Text="15" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <!-- Column Y -->
+                <TextBox Grid.Column="4" Grid.Row="1" x:Name="lightY1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="-15" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged"/>
+                <TextBox Grid.Column="4" Grid.Row="2" x:Name="lightY2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="-15" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="4" Grid.Row="3" x:Name="lightY3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="15" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="4" Grid.Row="4" x:Name="lightY4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="15" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="4" Grid.Row="5" x:Name="lightY5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="4" Grid.Row="6" x:Name="lightY6" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="4" Grid.Row="7" x:Name="lightY7" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="4" Grid.Row="8" x:Name="lightY8" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <!-- Column Z -->
+                <TextBox Grid.Column="5" Grid.Row="1" x:Name="lightZ1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="10" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="5" Grid.Row="2" x:Name="lightZ2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="10" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="5" Grid.Row="3" x:Name="lightZ3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="10" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="5" Grid.Row="4" x:Name="lightZ4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="10" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="5" Grid.Row="5" x:Name="lightZ5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="15" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="5" Grid.Row="6" x:Name="lightZ6" HorizontalAlignment="Center" TextWrapping="Wrap" Text="-10" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="5" Grid.Row="7" x:Name="lightZ7" HorizontalAlignment="Center" TextWrapping="Wrap" Text="15"
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="5" Grid.Row="8" x:Name="lightZ8" HorizontalAlignment="Center" TextWrapping="Wrap" Text="15" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+
+                <!-- Column DX -->
+                <TextBox Grid.Column="6" Grid.Row="1" x:Name="lightDX1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="6" Grid.Row="2" x:Name="lightDX2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="5" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="6" Grid.Row="3" x:Name="lightDX3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="6" Grid.Row="4" x:Name="lightDX4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="6" Grid.Row="5" x:Name="lightDX5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="6" Grid.Row="6" x:Name="lightDX6" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="6" Grid.Row="7" x:Name="lightDX7" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="6" Grid.Row="8" x:Name="lightDX8" HorizontalAlignment="Center" TextWrapping="Wrap" Text="-1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <!-- Column DY -->
+                <TextBox Grid.Column="7" Grid.Row="1" x:Name="lightDY1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="7" Grid.Row="2" x:Name="lightDY2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="7" Grid.Row="3" x:Name="lightDY3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="7" Grid.Row="4" x:Name="lightDY4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="7" Grid.Row="5" x:Name="lightDY5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="7" Grid.Row="6" x:Name="lightDY6" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="7" Grid.Row="7" x:Name="lightDY7" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="7" Grid.Row="8" x:Name="lightDY8" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <!-- Column DZ -->
+                <TextBox Grid.Column="8" Grid.Row="1" x:Name="lightDZ1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="8" Grid.Row="2" x:Name="lightDZ2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="8" Grid.Row="3" x:Name="lightDZ3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="3" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="8" Grid.Row="4" x:Name="lightDZ4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="8" Grid.Row="5" x:Name="lightDZ5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="8" Grid.Row="6" x:Name="lightDZ6" HorizontalAlignment="Center" TextWrapping="Wrap" Text="1" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="8" Grid.Row="7" x:Name="lightDZ7" HorizontalAlignment="Center" TextWrapping="Wrap" Text="3" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="8" Grid.Row="8" x:Name="lightDZ8" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <!-- Column Spot Exp -->
+                <TextBox Grid.Column="9" Grid.Row="1" x:Name="lightExponent1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="9" Grid.Row="2" x:Name="lightExponent2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="9" Grid.Row="3" x:Name="lightExponent3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="9" Grid.Row="4" x:Name="lightExponent4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="9" Grid.Row="5" x:Name="lightExponent5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="9" Grid.Row="6" x:Name="lightExponent6" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="9" Grid.Row="7" x:Name="lightExponent7" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="9" Grid.Row="8" x:Name="lightExponent8" HorizontalAlignment="Center" TextWrapping="Wrap" Text="2" 
+      		VerticalAlignment="Center" Width="30" Height="18" TextChanged="Settings_InputsChanged" />
+
+                <!-- Column Linear Attenuation -->
+                <TextBox Grid.Column="10" Grid.Row="1" x:Name="lightLinearA1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0.01" 
+      		VerticalAlignment="Center" Width="40" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="10" Grid.Row="2" x:Name="lightLinearA2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0.01" 
+      		VerticalAlignment="Center" Width="40" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="10" Grid.Row="3" x:Name="lightLinearA3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0.01" 
+      		VerticalAlignment="Center" Width="40" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="10" Grid.Row="4" x:Name="lightLinearA4" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0.01" 
+      		VerticalAlignment="Center" Width="40" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="10" Grid.Row="5" x:Name="lightLinearA5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0.01" 
+      		VerticalAlignment="Center" Width="40" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="10" Grid.Row="6" x:Name="lightLinearA6" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0.01" 
+      		VerticalAlignment="Center" Width="40" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="10" Grid.Row="7" x:Name="lightLinearA7" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0.01" 
+      		VerticalAlignment="Center" Width="40" Height="18" TextChanged="Settings_InputsChanged" />
+                <TextBox Grid.Column="10" Grid.Row="8" x:Name="lightLinearA8" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0.01" 
+      		VerticalAlignment="Center" Width="40" Height="18" TextChanged="Settings_InputsChanged" />
+
+                <!-- Column Spot Angle -->
+                <Slider Grid.Column="11" Grid.Row="1" x:Name="lightAngle1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="16"
+      		ValueChanged="Settings_InputsChanged" Minimum="1" Maximum="90"/>
+                <Slider Grid.Column="11" Grid.Row="2" x:Name="lightAngle2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="16"
+      		ValueChanged="Settings_InputsChanged" Minimum="1" Maximum="90"/>
+                <Slider Grid.Column="11" Grid.Row="3" x:Name="lightAngle3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="16"
+      		ValueChanged="Settings_InputsChanged" Minimum="1" Maximum="90"/>
+                <Slider Grid.Column="11" Grid.Row="4" x:Name="lightAngle4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="16"
+      		ValueChanged="Settings_InputsChanged" Minimum="1" Maximum="90"/>
+                <Slider Grid.Column="11" Grid.Row="5" x:Name="lightAngle5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="16"
+      		ValueChanged="Settings_InputsChanged" Minimum="1" Maximum="90"/>
+                <Slider Grid.Column="11" Grid.Row="6" x:Name="lightAngle6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="16"
+      		ValueChanged="Settings_InputsChanged" Minimum="1" Maximum="90"/>
+                <Slider Grid.Column="11" Grid.Row="7" x:Name="lightAngle7" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="16"
+      		ValueChanged="Settings_InputsChanged" Minimum="1" Maximum="90"/>
+                <Slider Grid.Column="11" Grid.Row="8" x:Name="lightAngle8" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="16"
+      		ValueChanged="Settings_InputsChanged" Minimum="1" Maximum="90"/>
+                <!-- Color -->
+                <Button Grid.Column="12" Grid.Row="1" x:Name="colorButton_1" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="colorButtons_Click"/>
+                <Button Grid.Column="12" Grid.Row="2" x:Name="colorButton_2" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="colorButtons_Click"/>
+                <Button Grid.Column="12" Grid.Row="3" x:Name="colorButton_3" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="colorButtons_Click"/>
+                <Button Grid.Column="12" Grid.Row="4" x:Name="colorButton_4" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="colorButtons_Click"/>
+                <Button Grid.Column="12" Grid.Row="5" x:Name="colorButton_5" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="colorButtons_Click"/>
+                <Button Grid.Column="12" Grid.Row="6" x:Name="colorButton_6" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="colorButtons_Click"/>
+                <Button Grid.Column="12" Grid.Row="7" x:Name="colorButton_7" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="colorButtons_Click"/>
+                <Button Grid.Column="12" Grid.Row="8" x:Name="colorButton_8" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="colorButtons_Click"/>
+                <Button Grid.Column="12" Grid.Row="9" x:Name="ambientLightButton" Content="Color" HorizontalAlignment="Center" VerticalAlignment="Center" 
+      		Width="50" Height="24" Click="ambientLightButton_Click"/>
+
+                <Rectangle Grid.Column="13" Grid.Row="1" x:Name="colorPanel1" Fill="White" HorizontalAlignment="Center" Height="18" Width="18" 
+      		VerticalAlignment="Center" />
+                <Rectangle Grid.Column="13" Grid.Row="2" x:Name="colorPanel2" Fill="White" HorizontalAlignment="Center" Height="18" Width="18" 
+      		VerticalAlignment="Center" />
+                <Rectangle Grid.Column="13" Grid.Row="3" x:Name="colorPanel3" Fill="White" HorizontalAlignment="Center" Height="18" Width="18"
+      		VerticalAlignment="Center" />
+                <Rectangle Grid.Column="13" Grid.Row="4" x:Name="colorPanel4" Fill="White" HorizontalAlignment="Center" Height="18" Width="18" 
+      		VerticalAlignment="Center" />
+                <Rectangle Grid.Column="13" Grid.Row="5" x:Name="colorPanel5" Fill="White" HorizontalAlignment="Center" Height="18" Width="18" 
+      		VerticalAlignment="Center" />
+                <Rectangle Grid.Column="13" Grid.Row="6" x:Name="colorPanel6" Fill="White" HorizontalAlignment="Center" Height="18" Width="18"
+      		VerticalAlignment="Center" Margin="6"/>
+                <Rectangle Grid.Column="13" Grid.Row="7" x:Name="colorPanel7" Fill="White" HorizontalAlignment="Center" Height="18" Width="18" 
+      		VerticalAlignment="Center" Margin="6"/>
+                <Rectangle Grid.Column="13" Grid.Row="8" x:Name="colorPanel8" Fill="White" HorizontalAlignment="Center" Height="18" Width="18" 
+      		VerticalAlignment="Center" />
+                <Rectangle Grid.Column="13" Grid.Row="9" x:Name="AmbientLightPanel" Fill="White" HorizontalAlignment="Center" Height="18" Width="18"
+      		VerticalAlignment="Center" />
+
+                <!-- Column YieldShadow -->
+                <RadioButton Grid.Column="14" Grid.Row="1" x:Name="yieldShadowRadio1" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="YieldShadowButtons_CheckedChanged"/>
+                <RadioButton Grid.Column="14" Grid.Row="2" x:Name="yieldShadowRadio2" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="YieldShadowButtons_CheckedChanged"/>
+                <RadioButton Grid.Column="14" Grid.Row="3" x:Name="yieldShadowRadio3" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="YieldShadowButtons_CheckedChanged"/>
+                <RadioButton Grid.Column="14" Grid.Row="4" x:Name="yieldShadowRadio4" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="YieldShadowButtons_CheckedChanged"/>
+                <RadioButton Grid.Column="14" Grid.Row="5" x:Name="yieldShadowRadio5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="YieldShadowButtons_CheckedChanged"/>
+                <RadioButton Grid.Column="14" Grid.Row="6" x:Name="yieldShadowRadio6" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="YieldShadowButtons_CheckedChanged"/>
+                <RadioButton Grid.Column="14" Grid.Row="7" x:Name="yieldShadowRadio7" HorizontalAlignment="Center"  VerticalAlignment="Center" Checked="YieldShadowButtons_CheckedChanged"/>
+                <RadioButton Grid.Column="14" Grid.Row="8" x:Name="yieldShadowRadio8" HorizontalAlignment="Center"  VerticalAlignment="Center" Checked="YieldShadowButtons_CheckedChanged"/>
+            </Grid>
+        </StackPanel>
+  </Grid>
+
+</Window>

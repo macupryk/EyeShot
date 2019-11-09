@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2012
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AdvancedPrinting", "AdvancedPrinting\AdvancedPrinting.vbproj", "{1595CD83-4C0E-49D7-B53B-99763F510C42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1595CD83-4C0E-49D7-B53B-99763F510C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1595CD83-4C0E-49D7-B53B-99763F510C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1595CD83-4C0E-49D7-B53B-99763F510C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1595CD83-4C0E-49D7-B53B-99763F510C42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,372 @@
+﻿<Window  
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        xmlns:wpfApplication1="clr-namespace:WpfApplication1"
+        x:Class="MainWindow"        
+        Title="Volume Rendering (DICOM)" Height="1000" Width="1280" MinHeight="560" MinWidth="1092"  FocusManager.FocusedElement="{Binding ElementName=model1}" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0 3 0 0"/>
+        </Style>
+
+        <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0 3 0 0"/>
+        </Style>
+
+        <Style x:Key="LabelItalicStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="11"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="TextBlockItalicStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+
+        <Style x:Key="TextLinkStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True" Margin="5">
+
+        <!-- Left Grid -->
+        <Grid DockPanel.Dock="Left" Width="512">            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0,30*" MaxHeight="512"/>
+                <RowDefinition Height="Auto" MinHeight="91"/>
+                <RowDefinition Height="Auto" MinHeight="25"/>
+                <RowDefinition Height="Auto" MinHeight="300"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" x:Name="pictureGrid" MouseDown="pictureGrid_OnMouseDown" MouseUp="pictureGrid_OnMouseUp" MouseMove="pictureGrid_OnMouseMove">
+                <!-- Picture Box -->
+                <Viewbox MinHeight="512">
+                    <Canvas x:Name="canvasPictureBox1" Height="512" Width="512">
+                        <ContentControl Canvas.Left="0" Canvas.Top="0" Canvas.Bottom="0">
+                            <Image x:Name="imagePictureBox1" Stretch="None"></Image>
+                        </ContentControl>                      
+                        <Border x:Name="dragSelectionBorder" BorderBrush="Yellow" BorderThickness="3" Background="#66FFFF00" Opacity="0.5" Visibility="Collapsed"/>
+                    </Canvas>
+                </Viewbox>
+                
+                <!-- Download Text -->
+                <DockPanel Width="512" Name="txtDownloadScans" Background="LightYellow" Visibility="Collapsed">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBox Style="{StaticResource TextLinkStyle}">The selected folder is empty.</TextBox>
+                        <TextBox Style="{StaticResource TextLinkStyle}">Click on the link below to download a sample file.</TextBox>
+                        <TextBlock Margin="5 0 0 0">
+                              <Hyperlink FontStyle="Italic" NavigateUri="http://static.devdept.com/PHENIX.zip" RequestNavigate="txtDownloadScans_LinkClicked">http://www.devdept.com/</Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </DockPanel>
+            </DockPanel>
+
+            <!-- Window Values / Iso Level -->
+            <StackPanel  Grid.Row="1" Orientation="Horizontal">
+                <GroupBox Name="grpWindowLevel" Header="Window Values">
+                    <Grid Margin="0 3 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="95"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource LabelItalicStyle}">Right drag on Image to change Center / Width.</Label>
+                        <Button Name="btnReset" Grid.Row="0" Grid.Column="2" Content="Reset" HorizontalAlignment="Right" Margin="0 0 0 0" Height="20" Width="50" Click="btnReset_Click"/>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelItalicStyle}">(Up/Down to change Center)</Label>
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelItalicStyle}" Margin="5 0 0 0">Center (Brightness):</Label>
+                        <Label Name="lblWindowCenterValue"  Grid.Row="1" Grid.Column="2" Style="{StaticResource LabelItalicStyle}" Margin="5 0 0 0">lblWindowCenterValue</Label>
+                        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelItalicStyle}">(Left/Right to change Width)</Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelItalicStyle}" Margin="5 0 0 0">Width (Contrast):</Label>
+                        <Label Name="lblWindowWidthValue"  Grid.Row="2" Grid.Column="2" Style="{StaticResource LabelItalicStyle}" Margin="5 0 0 0">lblWindowWidthValue</Label>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Name="grpIsoLevel" Header="Iso level" Margin="5 0 0 0" Width="182">
+                    <Grid Margin="0 5 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource TextBlockItalicStyle}" Text="Click on Image or type the value."/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource TextBlockItalicStyle}" Text="Otherwise choose a preset value."/>
+                        <TextBox Name="txtIsoLevel" Grid.Row="0" Grid.Column="1" Height="20" Width="80" VerticalAlignment="Center" TextChanged="txtIsoLevel_TextChanged"></TextBox>
+                        <ComboBox Name="cmbIsoLevel" Grid.Row="1" Grid.Column="1" Height="20"  Width="80" VerticalAlignment="Center" SelectionChanged="cmbIsoLevel_SelectedIndexChanged"></ComboBox>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+            
+            <!--Path-->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 5 0 0">
+                <Label VerticalAlignment="Center">Path</Label>
+                <TextBox Name="txtPath" Height="25" Width="359" Margin="3 0 0 0" VerticalAlignment="Center" VerticalContentAlignment="Center" LostFocus="txtPath_OnLostFocus"/>
+                <Button x:Name="btnPath" Height="25" Width="25" Margin="3 0 0 0" VerticalAlignment="Center" Click="btnPath_OnClick" Content="..."/>
+                <Button x:Name="btnSelectArea" Margin="5 0 5 0" VerticalAlignment="Center" Width="80" Click="btnSelectArea_Click" Content="Select Area"/>
+            </StackPanel>
+
+            <!--Bottom TabControl-->
+            <TabControl Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Name="tabControlBottom" Margin="0 5 0 0" Width="512" SelectionChanged="tabControl1_OnSelectionChanged">
+                <TabItem Name="tabPageSlices" Header="Slices">
+                    <StackPanel>
+                        <!-- Filename / Play / Stop -->
+                        <DockPanel Margin="3 5 0 0">
+                            <Label VerticalAlignment="Center">Filename:</Label>
+                            <Label Name="lblFilenameValue" Margin="3 0 0 0" Width="330" VerticalAlignment="Center">lblFilenameValue</Label>
+                            <ToggleButton Name="btnPlaySlices" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="3 0 0 0" Width="50" Click="btnPlaySlices_Click">Play</ToggleButton>
+                            <Button Name="btnStopSlices" HorizontalAlignment="Right" Height="25" Margin="0 0 3 0" Width="50" Click="btnStopSlices_Click">Stop</Button>
+                        </DockPanel>
+
+                        <!-- Current Slice -->
+                        <GroupBox Name="grpCurrentSlice" Header="Slices" Margin="0 5 0 0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Slider Name="trackBarCurrentImage" Grid.Row="0" Grid.ColumnSpan="3" Margin="0 3 0 0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="trackBarCurrentImage_ValueChanged"></Slider>
+                                <Label Name="lblCurrentImageFirst" Grid.Row="1" Grid.Column="0" Margin="7 0 0 0" HorizontalAlignment="Left">0</Label>
+                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                    <Label Name="lblCurrentImage">Current Slice:</Label>
+                                    <Label Name="lblCurrentImageValue" Margin="5 0 0 0">0</Label>
+                                </StackPanel>
+                                <Label Name="lblCurrentImageLast" Grid.Row="1" Grid.Column="2" Margin="0 0 7 0" HorizontalAlignment="Right">0</Label>
+                            </Grid>
+                        </GroupBox>
+
+                        <!-- Slices Interval -->
+                        <GroupBox Name="grpSlicesInterval" Header="Slices Interval" Margin="0 5 0 0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Slider Name="trackBarFirstSlice" Grid.Row="0" Grid.ColumnSpan="3" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="1" Margin="0 3 3 0" ValueChanged="trackBarFirstSlice_ValueChanged"></Slider>
+                                <Label Name="lblTrkBarFirstSliceStart" Grid.Row="1" Grid.Column="0" Margin="7 0 0 0" HorizontalAlignment="Left">0</Label>
+                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                    <Label Name="lblFirstSlice">First Slice:</Label>
+                                    <Label Name="lblFirstSliceValue" Margin="5 0 0 0">0</Label>
+                                </StackPanel>
+                                <Label Name="lblTrkBarFirstSliceEnd" Grid.Row="1" Grid.Column="2" Margin="0 0 10 0" HorizontalAlignment="Right">0</Label>
+
+                                <Slider Name="trackBarLastSlice" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="1" Margin="3 3 0 0" ValueChanged="trackBarLastSlice_ValueChanged"></Slider>
+                                <Label Name="lblTrkBarLastSliceStart" Grid.Row="1" Grid.Column="3" Margin="10 0 0 0" HorizontalAlignment="Left">0</Label>
+                                <DockPanel Grid.Row="1" Grid.Column="4">
+                                    <Label Name="lblLastSlice">Last Slice:</Label>
+                                    <Label Name="lblLastSliceValue" Margin="5 0 0 0">0</Label>
+                                </DockPanel>
+                                <Label Name="lblTrkBarLastSliceEnd" Grid.Row="1" Grid.Column="5" Margin="0 0 7 0" HorizontalAlignment="Right">0</Label>
+                            </Grid>
+                        </GroupBox>
+
+                        <DockPanel LastChildFill="True" Margin="0 5 0 0">
+                            <Label VerticalAlignment="Center">Current Series:</Label>
+                            <ComboBox Name="cmbCurrentSeries" Margin="5 0 0 0" SelectionChanged="cmbCurrentSeries_OnSelectionChanged"></ComboBox>
+                        </DockPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Name="tabPageDicomTree" Header="Dicom Tree">
+                    <DockPanel LastChildFill="True">
+                        <TreeView Name="treeDicom" SelectedItemChanged="treeDicom_OnSelectedItemChanged">
+                            <TreeView.ItemTemplate>
+                                <HierarchicalDataTemplate DataType="{x:Type wpfApplication1:TreeNode}" ItemsSource="{Binding Items}">
+                                    <TextBlock Text="{Binding Text}" />
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                            <TreeView.ItemContainerStyle>
+                                <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                                </Style>
+                            </TreeView.ItemContainerStyle>
+                            <TreeView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Save to XML" Click="treeDicom_SaveToXml"></MenuItem>
+                                </ContextMenu>
+                            </TreeView.ContextMenu>
+                        </TreeView>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Name="tabPageDetails" Header="Slice Details">
+                    <DockPanel LastChildFill="True">
+                        <TreeView Name="treeSliceDetails">
+                            <TreeView.ItemTemplate>
+                                <HierarchicalDataTemplate DataType="{x:Type wpfApplication1:TreeNode}" ItemsSource="{Binding Items}">
+                                    <TextBlock Text="{Binding Text}" />
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                            <TreeView.ItemContainerStyle>
+                                <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                                </Style>
+                            </TreeView.ItemContainerStyle>
+                            <TreeView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Save to XML" Click="treeSliceDetails_SaveToXml"></MenuItem>
+                                </ContextMenu>
+                            </TreeView.ContextMenu>
+                        </TreeView>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Name="tabPageErrors" Header="Errors">
+                    <DockPanel LastChildFill="True">
+                        <TextBox Name="txtErrors" TextWrapping="Wrap"/>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+        <!-- Right Panel -->
+        <DockPanel DockPanel.Dock="Right" Margin="5 0 0 0" Width="160">
+            <StackPanel DockPanel.Dock="Top">
+                <GroupBox Header="Volume Rendering" Name="grpVolumeRendering">
+                    <StackPanel HorizontalAlignment="Center">
+                        <CheckBox x:Name="chkPreview" Content="Preview" IsChecked="True" Margin="0 3 0 0"/>
+                        <Button x:Name="btnAddVolume" Click="btnAddVolume_Click" Content="Add Volume"/>
+                        <Button x:Name="btnAddSlice" Click="btnAddSlice_Click" Content="Add Current Slice"/>
+                        <Button x:Name="btnClear" Click="btnClear_Click" Content="Clear All"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Layers" Margin="0 5 0 0" Name="grpLayers">
+                    <StackPanel Margin="0 3 0 0">
+                        <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal">
+                            <TextBox Name="txtLayerName" Width="60"></TextBox>
+                            <xctk:ColorPicker Name="layerColorPicker" Width="80" Margin="5 0 0 0"/>
+                        </StackPanel>
+                        <ListView Margin="0 3 0 0" DockPanel.Dock="Bottom" MinHeight="200" x:Name="layerListView" ItemsSource="{Binding Layers}" SelectionMode="Single">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                </Style>
+                                <!-- set the style to get the right ForeColor -->
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Foreground" Value="Black"/>                                   
+                                </Style>
+                                <Style TargetType="{x:Type Label}">
+                                    <Setter Property="Background" Value="{Binding Path=ForeColor}"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn x:Name="LayerCheck" Width="30">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate DataType="{x:Type wpfApplication1:ListViewModelItem}">
+                                                <CheckBox Focusable="False"                                                       
+													                                IsChecked="{Binding Path=IsChecked}"
+                                                          Checked="layerListView_ItemChecked"
+                                                          Unchecked="layerListView_ItemChecked">
+                                                </CheckBox>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="LayerImage" Width="30">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Width="16" Height="16"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="LayerName" Header="Name" DisplayMemberBinding="{Binding LayerName}" Width="60"/>
+                                    <GridViewColumn x:Name="ColorName"  Header="Color" DisplayMemberBinding="{Binding ColorName}" Width="80"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Actions" Margin="0 5 0 0" Name="grpActions">
+                <StackPanel HorizontalAlignment="Center">
+                        <RadioButton x:Name="rdBtnNone" Style="{StaticResource ToggleButtonStyle}" Content="None" IsChecked="True" Checked="rdBtnNone_CheckedChanged" Unchecked="rdBtnNone_CheckedChanged"/>
+                        <RadioButton x:Name="rdBtnSelect" Style="{StaticResource ToggleButtonStyle}" Content="Select" Checked="rdBtnSelect_CheckedChanged" Unchecked="rdBtnSelect_CheckedChanged"/>
+                        <RadioButton x:Name="rdBtnMeasure" Style="{StaticResource ToggleButtonStyle}" Content="Measure" Checked="rdBtnMeasure_CheckedChanged" Unchecked="rdBtnMeasure_CheckedChanged"/>
+                        <RadioButton x:Name="rdBtnClip" Style="{StaticResource ToggleButtonStyle}" Content="Clip Plane" Checked="rdBtnClip_CheckedChanged" Unchecked="rdBtnClip_CheckedChanged"/>
+                    <Button x:Name="btnInvertSelection" Content="Invert Selection" Margin="0 30 0 0" Click="btnInvertSelection_Click"/>
+                    <Button x:Name="btnSplitMeshes" Content="Split Disjoint" IsEnabled="False" Click="btnSplitMeshes_Click"/>
+                    <Button x:Name="btnSmoothMeshes" Content="Smooth" IsEnabled="False" Click="btnSmoothMeshes_Click"/>
+                    <Button x:Name="btnAddSection" Content="Add Section" IsEnabled="False" Click="btnAddSection_Click"/>
+                </StackPanel>
+            </GroupBox>
+            </StackPanel>
+
+            <Button x:Name="btnExport" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Click="btnExport_OnClick">Export to STL</Button>
+        </DockPanel>
+
+        <!-- Eyeshot Model as DockPanel's LastChild -->
+        <wpfApplication1:MyModel x:Name="model1" Margin="5 0 0 0">
+            <wpfApplication1:MyModel.ProgressBar>
+                <ddes:ProgressBar TextColor="WhiteSmoke" Lighting="false"></ddes:ProgressBar>
+            </wpfApplication1:MyModel.ProgressBar>                      
+            <wpfApplication1:MyModel.Viewports>
+                  <ddes:Viewport>                    
+                    <ddes:Viewport.OriginSymbol>
+                        <ddes:OriginSymbol Lighting="False"/>
+                    </ddes:Viewport.OriginSymbol>
+                    <ddes:Viewport.CoordinateSystemIcon>
+                        <ddes:CoordinateSystemIcon Lighting="False"/>
+                    </ddes:Viewport.CoordinateSystemIcon>
+                    <ddes:Viewport.ViewCubeIcon>
+                        <ddes:ViewCubeIcon Lighting="False"/>
+                    </ddes:Viewport.ViewCubeIcon>
+                    <ddes:Viewport.Background>
+                        <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+                    </ddes:Viewport.Background>
+                    <ddes:Viewport.ToolBars>
+                        <ddes:ToolBar Position="HorizontalTopCenter">
+                            <ddes:ToolBar.Buttons>
+                                <ddes:HomeToolBarButton/>
+                                <ddes:MagnifyingGlassToolBarButton/>
+                                <ddes:ZoomWindowToolBarButton/>
+                                <ddes:ZoomToolBarButton/>
+                                <ddes:PanToolBarButton/>
+                                <ddes:RotateToolBarButton/>
+                                <ddes:ZoomFitToolBarButton/>
+                            </ddes:ToolBar.Buttons>
+                        </ddes:ToolBar>
+                    </ddes:Viewport.ToolBars>
+                </ddes:Viewport>
+            </wpfApplication1:MyModel.Viewports>
+        </wpfApplication1:MyModel>
+    </DockPanel>
+</Window>

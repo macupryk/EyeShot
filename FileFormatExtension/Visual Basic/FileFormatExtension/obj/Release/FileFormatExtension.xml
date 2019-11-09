@@ -1,0 +1,165 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+FileFormatExtension
+</name>
+</assembly>
+<members>
+<member name="M:WpfApplication1.Application.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:WpfApplication1.Application.Main">
+	<summary>
+Application Entry Point.
+</summary>
+</member><member name="T:WpfApplication1.Application">
+	<summary>
+Application
+</summary>
+</member><member name="M:WpfApplication1.WpfApplication1.MainWindow.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:WpfApplication1.DetailsWindow.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="P:WpfApplication1.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:WpfApplication1.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:WpfApplication1.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.Application">
+	<summary>
+ Returns the application object for the running application
+ </summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.Computer">
+	<summary>
+ Returns information about the host computer.
+ </summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.User">
+	<summary>
+ Returns information for the current user.  If you wish to run the application with the current 
+ Windows user credentials, call My.User.InitializeWithWindowsUser().
+ </summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.Log">
+	<summary>
+ Returns the application log. The listeners can be configured by the application's configuration file.
+ </summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.Windows">
+	<summary>
+ Returns the collection of Windows defined in the project.
+ </summary>
+</member><member name="T:WpfApplication1.My.MyWpfExtension">
+	<summary>
+ Module used to define the properties that are available in the My Namespace for WPF
+ </summary>
+	<remarks></remarks>
+</member><member name="T:WpfApplication1.WpfApplication1.MainWindow">
+	<summary>
+ Interaction logic for MainWindow.xaml
+ </summary>
+</member><member name="T:EyeshotExtensions.MyCircle">
+	<summary>
+ Defines an extension for the Circle entity
+ </summary>
+</member><member name="M:EyeshotExtensions.MyCircleSurrogate.#ctor(EyeshotExtensions.MyCircle)">
+	<summary>
+ Standard constructor
+ </summary>
+</member><member name="P:EyeshotExtensions.MyCircleSurrogate.CustomDescription">
+	<summary>
+ My custom description
+ </summary>
+</member><member name="M:EyeshotExtensions.MyCircleSurrogate.ConvertToObject">
+	<summary>
+ Creates the object related to the surrogate.
+ </summary>
+	<remarks>
+ This method uses the <see cref="!:MyCircle.MyCircle(Plane, Double)"/> constructor to create the object.
+ When the content is <see cref="F:devDept.Serialization.contentType.Tessellation"/> the resulting object is a <see cref="T:devDept.Eyeshot.Entities.LinearPath"/>
+	</remarks>
+	<returns>The object created.</returns>
+</member><member name="M:EyeshotExtensions.MyCircleSurrogate.CopyDataToObject(devDept.Eyeshot.Entities.Entity)">
+	<summary>
+ Copies common data from surrogate to object.
+ </summary>
+	<remarks>This method is called by the ConvertToObject method after the creation of the object instance.</remarks>
+</member><member name="M:EyeshotExtensions.MyCircleSurrogate.CopyDataFromObject(devDept.Eyeshot.Entities.Entity)">
+	<summary>
+ Copies all data from the object to its surrogate.
+ </summary>
+	<remarks>Use this method to fill ALL the properties of this surrogate. It is called by the empty constructor to initialize the surrogates properties.</remarks>
+</member><member name="M:EyeshotExtensions.MyCircleSurrogate.CheckSurrogateData(devDept.Serialization.contentType,System.String)">
+	<summary>
+ Integrity check according to the content type.
+ </summary>
+	<remarks>
+ During the serialization process, this method is called internally before serializing the surrogate. 
+ During the deserialization process, it can be used in the ConvertToObject method.
+ </remarks>
+</member><member name="T:EyeshotExtensions.MyCircleSurrogate">
+	<summary>
+ Defines the <see cref="T:EyeshotExtensions.MyCircle"/> surrogate.
+ </summary>
+</member><member name="M:EyeshotExtensions.CustomData.#ctor(System.Int32)">
+	<summary>
+ Constructor for custom version 1.1
+ </summary>
+	<seealso cref="F:EyeshotExtensions.MyFileSerializer.CustomTag"/>
+</member><member name="M:EyeshotExtensions.CustomData.#ctor(System.Int32,System.Single)">
+	<summary>
+ Constructor for custom version 1.2
+ </summary>
+	<seealso cref="F:EyeshotExtensions.MyFileSerializer.CustomTag"/>
+</member><member name="T:EyeshotExtensions.CustomData">
+	<summary>
+ Defines a custom object.
+ </summary>
+	<remarks>Compile the project with the conditional symbol "OLDVER" to simulate an old version of this class.</remarks>
+</member><member name="M:EyeshotExtensions.CustomDataSurrogate.op_Implicit(EyeshotExtensions.CustomDataSurrogate)~EyeshotExtensions.CustomData">
+	<summary>
+ Converts the surrogate to the related object during the deserialization process.
+ </summary>
+</member><member name="M:EyeshotExtensions.CustomDataSurrogate.op_Implicit(EyeshotExtensions.CustomData)~EyeshotExtensions.CustomDataSurrogate">
+	<summary>
+ Converts the object to the related surrogate during the serialization process.
+ </summary>
+</member><member name="T:EyeshotExtensions.CustomDataSurrogate">
+	<summary>
+ Defines the <see cref="T:EyeshotExtensions.CustomData"/> surrogate.
+ </summary>
+</member><member name="M:EyeshotExtensions.MyFileSerializer.#ctor">
+	<summary>
+ Empty constructor used in conjunction with the <see cref="T:devDept.Eyeshot.Translators.WriteFile"/> class that accepts the <see cref="P:devDept.Serialization.Serializer.Model"/> as parameter.
+ </summary>
+	<remarks>Use this constructor to define the serialization model for the <see cref="T:devDept.Eyeshot.Translators.WriteFile"/> class that accepts the <see cref="P:devDept.Serialization.Serializer.Model"/> as parameter.</remarks>
+</member><member name="M:EyeshotExtensions.MyFileSerializer.#ctor(devDept.Serialization.contentType)">
+	<summary>
+ Constructor used in conjunction with the <see cref="T:devDept.Eyeshot.Translators.ReadFile"/> class.
+ </summary>
+	<exception cref="T:devDept.Eyeshot.EyeshotException">Thrown if the content type is <see cref="F:devDept.Serialization.contentType.None"/>.</exception>
+</member><member name="T:EyeshotExtensions.MyFileSerializer">
+	<summary>
+ Defines an extension for the Eyeshot proprietary file format.
+ </summary>
+	<remarks>
+ If you want to include special Autodesk objects like LayerEx, CircleEx, PictureEx, etc. you need to derive from FileSerializerEx contained in the x86/x64 Eyeshot assemblies.
+ </remarks>
+</member><member name="T:WpfApplication1.DetailsWindow">
+	<summary>
+ Interaction logic for DetailsWindow.xaml
+ </summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WpfApplication1.DrawingsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+             xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:WpfApplication1"
+             xmlns:winforms="clr-namespace:devDept.CustomControls;assembly=devDept.CustomControls.Wpf"
+             mc:Ignorable="d" 
+             d:DesignWidth="1007" d:DesignHeight="660">
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0,5,5,0"/>
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel Name="drawingsMainDockPanel" LastChildFill="True" Margin="5">
+        <DockPanel Dock="Left" LastChildFill="True" >
+            <StackPanel DockPanel.Dock="Bottom"  Margin="0, 5, 0, 0" Orientation="Horizontal">
+                <Button Name ="addLinearDimButton" Content = "Add LinearDim " Width="84" Click="AddLinearDimButton_Click"/>
+                <Button Name ="exportSheetButton" Content = "Export Sheet " Width="84" Click="ExportSheetButton_Click"/>
+            </StackPanel>
+            <WindowsFormsHost DockPanel.Dock="Bottom" >
+                <winforms:DrawingsPanel x:Name="drawingsPanel1" SelectionChanged="DrawingsPanel1OnSelectionChanged" ViewAdded="DrawingsPanel1OnViewAdded"></winforms:DrawingsPanel>
+            </WindowsFormsHost>
+        </DockPanel>
+        <DockPanel Dock="Right" LastChildFill="True" Width="320">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+                <Button Name="rebuildButton" Content="Rebuild" Click="RebuildButton_Click"/>
+                <Button Name="printButton" Content="Print" Click="PrintButton_Click"/>
+            </StackPanel>
+            <xctk:PropertyGrid Name="propertyGrid1" PropertyValueChanged="PropertyGrid1_PropertyValueChanged" ShowSearchBox="False" ShowSortOptions="False" ShowTitle="False" ShowSummary="False"/>
+        </DockPanel>
+        <local:MyDrawings x:Name="drawings1"  Margin="5,0,5,0" SelectionChanged="Drawings1OnSelectionChanged" KeyUp="Drawings1OnKeyUp"/>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,270 @@
+﻿<Window xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        xmlns:wpfApplication1="clr-namespace:WpfApplication1"  
+        xmlns:winforms="clr-namespace:devDept.CustomControls;assembly=devDept.CustomControls.Wpf"
+        x:Class="WpfApplication1.MainWindow"        
+        Title="Drafting Demo" Height="Auto" Width="Auto"  FocusManager.FocusedElement="{Binding ElementName=model1}" Closed="Window_Closed" WindowStartupLocation="CenterScreen" Icon="drafting.ico">
+
+    <Window.Resources>
+
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="5 3 0 0"/>
+        </Style>
+
+        <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="5 3 0 0"/>
+        </Style>
+
+        <Style x:Key="TurboToggleButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center"                  
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="LightGreen" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Width" Value="64"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="0 0 3 0"/>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="Text" Value="0"></Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True" Margin="5">
+        <!-- StatusBar -->
+        <StatusBar DockPanel.Dock="Bottom" Background="{x:Null}">
+            <StatusBarItem>
+                <Label x:Name="mainStatusLabel" Content="Middle Mouse Button = Rotate, Ctrl + Middle = Pan, Shift + Middle = Zoom, Mouse Wheel = Zoom +/-" HorizontalAlignment="Stretch"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalContentAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <StackPanel Background="LightGreen">
+                        <TextBlock x:Name="rendererVersionStatusLabel" ToolTip="Renderer Version"/>
+                    </StackPanel>
+                    <StackPanel Background="#FFF5F5A9" Margin="5 0 0 0">
+                        <TextBlock x:Name="selectedCountStatusLabel" ToolTip="Selected count"/>
+                    </StackPanel>
+                    <StackPanel Background="#FFA9EFF5" Margin="5 0 0 0">
+                        <TextBlock x:Name="addedCountStatusLabel" ToolTip="Added to selection count"/>
+                    </StackPanel>
+                    <StackPanel Background="#FFF5A9AF" Margin="5 0 0 0">
+                        <TextBlock x:Name="removedCountStatusLabel" ToolTip="Removed from selection count"/>
+                    </StackPanel>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        <!-- Main DockPanel -->
+        <DockPanel x:Name="rightPanel" DockPanel.Dock="Top" LastChildFill="True">
+            <!-- Right StackPanel -->
+            <ScrollViewer DockPanel.Dock="Right" VerticalScrollBarVisibility="Auto">
+                <StackPanel DockPanel.Dock="Right" Margin="5 0 0 0" Width="350">
+                    <Expander Header="Drafting">
+                        <WrapPanel>
+                            <Button x:Name="pointButton" Content="Points" Click="pointButton_OnClick"/>
+                            <Button x:Name="lineButton" Content="Line" Click="lineButton_OnClick"/>
+                            <Button x:Name="plineButton" Content="PolyLine" Click="plineButton_OnClick"/>
+                            <Button x:Name="circleButton" Content="Circle" Click="circleButton_OnClick"/>
+
+                            <Button x:Name="arcButton" Content="Arc" Click="arcButton_OnClick"/>
+                            <Button x:Name="splineButton" Content="Spline" Click="splineButton_OnClick"/>
+                            <Button x:Name="ellipseButton" Content="Ellipse" Click="ellipseButton_OnClick"/>
+                            <Button x:Name="ellipticalArcButton" Content="EllipticalArc" Click="ellipticalArcButton_OnClick"/>
+
+                            <Button x:Name="compositeCurveButton" Content="Composite" Click="compositeCurveButton_OnClick"/>
+                            <Button x:Name="textButton" Content="Text" Click="textButton_OnClick"/>
+                            <Button x:Name="tangentsButton" Content="Tangents" Click="tangentsButton_OnClick" RenderTransformOrigin="0.485,0.609"/>
+
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Header="Dimensioning" Margin="0 5 0 0">
+                        <WrapPanel>
+                            <Button x:Name="linearDimButton" Content="Linear" Click="linearDimButton_OnClick"/>
+                            <Button x:Name="alignedDimButton" Content="Aligned" Click="alignedDimButton_OnClick"/>
+                            <Button x:Name="radialDimButton" Content="Radial" Click="radialDimButton_OnClick"/>
+                            <Button x:Name="diametricDimButton" Content="Diametric" Click="diametricDimButton_OnClick"/>
+
+                            <Button x:Name="angularDimButton" Content="Angular" Click="angularDimButton_OnClick"/>
+                            <Button x:Name="ordinateHorizontalButton" Content="Ordinate H." Click="ordinateHorizontalButton_OnClick"/>
+                            <Button x:Name="ordinateVerticalButton" Content="Ordinate V." Click="ordinateVerticalButton_OnClick"/>
+                            <Button x:Name="leaderButton" Content="Leader" Click="leaderButton_OnClick"/>
+
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Header="Snapping" Margin="0 5 0 0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <ToggleButton x:Name="objectSnapCheckBox" Style="{StaticResource ToggleButtonStyle}" Content="Object Snap" Click="objectSnapCheckBox_OnClick"/>
+                                <ToggleButton x:Name="gridSnapCheckBox" Style="{StaticResource ToggleButtonStyle}" Content="Grid Snap" Click="gridSnapCheckBox_OnClick"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal" Margin="5 10 0 0">
+                                <StackPanel x:Name="snapPanel" IsEnabled="False" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <RadioButton x:Name="endRadioButton" Content="End"/>
+                                    <RadioButton x:Name="midRadioButton" Margin="10 0 0 0" Content="Mid"/>
+                                    <RadioButton x:Name="cenRadioButton" Margin="10 0 0 0" Content="Cen"/>
+                                    <RadioButton x:Name="quadRadioButton" Margin="10 0 0 0" Content="Quad"/>
+                                    <RadioButton x:Name="pointRadioButton" Margin="10 0 0 0" Content="Point"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Hide/Show" Margin="0 5 0 0">
+                        <WrapPanel>
+                            <ToggleButton x:Name="showOriginButton" Style="{StaticResource ToggleButtonStyle}" Content="Origin" IsChecked="True" Click="showOriginButton_OnClick"/>
+                            <ToggleButton x:Name="showExtentsButton" Style="{StaticResource ToggleButtonStyle}" Content="Extents" Click="showExtentsButton_OnClick"/>
+                            <ToggleButton x:Name="showVerticesButton" Style="{StaticResource ToggleButtonStyle}" Content="Vertices" Click="showVerticesButton_OnClick"/>
+                            <ToggleButton x:Name="showGridButton" Style="{StaticResource ToggleButtonStyle}" Content="Grid" IsChecked="True" Click="showGridButton_OnClick"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Header="Selection" Margin="0 5 0 0">
+                        <WrapPanel>
+                            <ComboBox x:Name="selectionComboBox" SelectionChanged="selectionComboBox_OnSelectionChanged" Width="164" Height="24" Margin="5 3 0 0" VerticalAlignment="Top">
+                                <ComboBoxItem Content="by Pick"/>
+                                <ComboBoxItem Content="by Box"/>
+                                <ComboBoxItem Content="by Polygon"/>
+                                <ComboBoxItem Content="by Box Enclosed"/>
+                                <ComboBoxItem Content="by Polygon Enclosed"/>
+                                <ComboBoxItem Content="Visible by Pick Dynamic"/>
+                            </ComboBox>
+                            <ToggleButton x:Name="selectCheckBox" Style="{StaticResource ToggleButtonStyle}" Content="Select" Click="selectCheckBox_OnClick"/>
+                            <Button x:Name="clearSelectionButton" Content="Clear" Click="clearSelectionButton_OnClick" />
+                            <Button x:Name="invertSelectionButton" Content="Invert" Click="invertSelectionButton_OnClick" />
+                            <Button x:Name="groupButton" Content="Group" Click="groupButton_OnClick"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Header="Editing" Margin="0 5 0 0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <WrapPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Button x:Name="deleteButton" Content="Delete" Click="deleteButton_OnClick"/>
+                                <Button x:Name="explodeButton" Content="Explode" Click="explodeButton_OnClick"/>
+                                <Button x:Name="mirrorButton" Content="Mirror" Click="mirrorButton_OnClick"/>
+                                <Button x:Name="offsetButton" Content="Offset" Click="offsetButton_OnClick"/>
+
+                                <Button x:Name="trimButton" Content="Trim" Click="trimButton_OnClick"/>
+                                <Button x:Name="extendButton" Content="Extend" Click="extendButton_OnClick"/>
+                                <Button x:Name="filletButton" Content="Fillet" Click="filletButton_OnClick"/>
+                                <Button x:Name="chamferButton" Content="Chamfer" Click="chamferButton_OnClick"/>
+
+                                <Button x:Name="moveButton" Content="Move" Click="moveButton_OnClick"/>
+                                <Button x:Name="rotateButton" Content="Rotate" Click="rotateButton_OnClick"/>
+                                <Button x:Name="scaleButton" Content="Scale" Click="scaleButton_OnClick"/>
+                            </WrapPanel>
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal" Margin="0 5 0 0">
+                                <Label Content="Fillet Radius / Chamfer Distance"/>
+                                <TextBox x:Name="filletTextBox" TextChanged="filletTextBox_OnTextChanged" Width="62" Height="18" Text="10.0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Inspection / Mass Properties" Margin="0 5 0 0">
+                        <WrapPanel>
+                            <ToggleButton x:Name="pickVertexButton" Style="{StaticResource ToggleButtonStyle}" Content="Pick Vertex" Click="pickVertexButton_OnClick"/>
+                            <Button x:Name="areaButton" Content="Area" Click="areaButton_OnClick"/>
+                            <Button x:Name="dumpButton" Content="Dump" Click="dumpButton_OnClick"/>
+                            <ToggleButton x:Name="showCurveDirectionButton" Style="{StaticResource ToggleButtonStyle}" Content="Show Dir." Checked="showCurveDirectionButton_CheckedChanged" Unchecked="showCurveDirectionButton_CheckedChanged"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Header="Vector" Margin="0 5 0 0">
+                        <WrapPanel>
+                            <Button x:Name="vectorCopyToClipbardButton" Content="Copy" Click="vectorCopyToClipbardButton_OnClick"/>
+                            <Button x:Name="vectorSaveButton" Content="Save" Click="vectorSaveButton_OnClick"/>
+                            <Button x:Name="printPreviewButton" Content="Print Prev." Click="printPreviewButton_OnClick"/>
+                            <Button x:Name="printButton" Content="Print" Click="printButton_OnClick"/>
+
+                            <Button Grid.Row="1" HorizontalAlignment="Left" x:Name="pageSetupButton" Content="Page Setup" Click="pageSetupButton_OnClick"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Header="Miscellaneous" Margin="0 5 0 0">
+                        <WrapPanel>
+                            <Button x:Name="openButton" HorizontalAlignment="Left" Content="Open" Click="openButton_OnClick"/>
+                            <Button x:Name="saveButton" HorizontalAlignment="Left" Content="Save" Click="saveButton_OnClick"/>
+                            <Button x:Name="importButton" HorizontalAlignment="Left" Content="Import" Click="importButton_OnClick"/>
+                            <Button x:Name="exportButton" HorizontalAlignment="Left" Content="Export" Click="exportButton_OnClick"/>
+                            <Button x:Name="websiteButton" HorizontalAlignment="Left" Content="Website" Click="websiteButton_OnClick"/>
+                            <ToggleButton x:Name="turboButton" Style="{StaticResource ToggleButtonStyle}" Content="Turbo" IsChecked="True" Checked="turboButton_Checked" Unchecked="turboButton_Unchecked"/>
+                        </WrapPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+            <!-- Bottom DockPanel -->
+            <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Height="140" Margin="-1 5 -1 0">
+
+                <DockPanel Grid.Column="0" LastChildFill="True" UseLayoutRounding="True">
+                    <WindowsFormsHost DockPanel.Dock="Top">
+                        <winforms:TableTabControl x:Name="tableTabControl" ></winforms:TableTabControl>
+                    </WindowsFormsHost>
+                </DockPanel>
+
+            </DockPanel>
+            <!-- Eyeshot Model as DockPanel's LastChild -->
+            <wpfApplication1:MyModel DockPanel.Dock="Top" x:Name="model1" MouseDown="Model1_OnMouseDown">
+                <ddes:Model.Viewports>
+                    <ddes:Viewport InitialView="Top">
+                        <ddes:Viewport.Camera>
+                            <ddes:Camera ZoomFactor="5" FocalLength="50" Distance="210.31923998986298" Rotation="0.12940952255126, 0.224143868042013, 0.482962913144534, 0.836516303737808" Target="0, 0, 0"/>
+                        </ddes:Viewport.Camera>
+                        <ddes:Viewport.OriginSymbol>
+                            <ddes:OriginSymbol Lighting="False"/>
+                        </ddes:Viewport.OriginSymbol>
+                        <ddes:Viewport.CoordinateSystemIcon>
+                            <ddes:CoordinateSystemIcon Lighting="False"/>
+                        </ddes:Viewport.CoordinateSystemIcon>
+
+                        <ddes:Viewport.Background>
+                            <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+                        </ddes:Viewport.Background>
+                        <ddes:Viewport.Grids>
+                            <ddes:Grid Step="10" Lighting="False"/>
+                        </ddes:Viewport.Grids>
+                        <ddes:Viewport.ToolBars>
+                            <ddes:ToolBar Position="HorizontalTopCenter">
+                                <ddes:ToolBar.Buttons>
+                                    <ddes:HomeToolBarButton/>
+                                    <ddes:MagnifyingGlassToolBarButton/>
+                                    <ddes:ZoomWindowToolBarButton/>
+                                    <ddes:ZoomToolBarButton/>
+                                    <ddes:PanToolBarButton/>
+                                    <ddes:RotateToolBarButton/>
+                                    <ddes:ZoomFitToolBarButton/>
+                                </ddes:ToolBar.Buttons>
+                            </ddes:ToolBar>
+                        </ddes:Viewport.ToolBars>
+                    </ddes:Viewport>
+                </ddes:Model.Viewports>
+            </wpfApplication1:MyModel>
+        </DockPanel>
+        <Button x:Name="button" Content="Button" Height="215" Margin="0" VerticalAlignment="Top" Width="75"/>
+    </DockPanel>
+
+</Window>

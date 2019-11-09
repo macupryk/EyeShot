@@ -1,0 +1,60 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        xmlns:wpfApplication1="clr-namespace:WpfApplication1"
+        xmlns:winForms="clr-namespace:devDept.CustomControls;assembly=devDept.CustomControls.Wpf"
+        x:Class="MainWindow"
+        Title="MainWindow" Height="480" Width="680" FocusManager.FocusedElement="{Binding ElementName=model1}">
+
+
+    <DockPanel LastChildFill="True" Margin="5">
+        <!--Layers-->
+        <StackPanel DockPanel.Dock="Right" Margin="5 0 0 0">
+            <Label Content="Layers"/>
+            <DockPanel Grid.Column="0" LastChildFill="True" UseLayoutRounding="True">
+                <WindowsFormsHost DockPanel.Dock="Top">
+                    <winForms:LayerListView x:Name="layerListView" ></winForms:LayerListView>
+                </WindowsFormsHost>
+            </DockPanel>
+        </StackPanel>
+
+        <!--Model-->
+        <ddes:Model Name="model1" ToolTipService.ShowDuration="5000" MouseLeave="Model1_OnMouseLeave">          
+          <ddes:Model.Viewports>
+            <ddes:Viewport>
+              <ddes:Viewport.OriginSymbol>
+                <ddes:OriginSymbol Lighting="False"/>
+              </ddes:Viewport.OriginSymbol>
+              <ddes:Viewport.CoordinateSystemIcon>
+                <ddes:CoordinateSystemIcon Lighting="False"/>
+              </ddes:Viewport.CoordinateSystemIcon>
+              <ddes:Viewport.ViewCubeIcon>
+                <ddes:ViewCubeIcon Lighting="False"/>
+              </ddes:Viewport.ViewCubeIcon>
+              <ddes:Viewport.Background>
+                <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+              </ddes:Viewport.Background>
+              <ddes:Viewport.Grids>
+                <ddes:Grid Step="10" Lighting="False"/>
+              </ddes:Viewport.Grids>
+              <ddes:Viewport.ToolBars>
+                <ddes:ToolBar Position="HorizontalTopCenter">
+                  <ddes:ToolBar.Buttons>
+                    <ddes:HomeToolBarButton/>
+                    <ddes:MagnifyingGlassToolBarButton/>
+                    <ddes:ZoomWindowToolBarButton/>
+                    <ddes:ZoomToolBarButton/>
+                    <ddes:PanToolBarButton/>
+                    <ddes:RotateToolBarButton/>
+                    <ddes:ZoomFitToolBarButton/>
+                  </ddes:ToolBar.Buttons>
+                </ddes:ToolBar>
+              </ddes:Viewport.ToolBars>
+            </ddes:Viewport>
+          </ddes:Model.Viewports>
+        </ddes:Model>
+    </DockPanel>
+</Window>

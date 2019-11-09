@@ -1,0 +1,120 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        x:Class="MainWindow"        
+        Title="MainWindow" Height="420" Width="550" FocusManager.FocusedElement="{Binding ElementName=model1}">
+
+    <Window.Resources>
+        <ImageBrush x:Key="MapleImageBrush" ImageSource="Resources/maple_small.jpg"/>
+        <ImageBrush x:Key="CherryImageBrush" ImageSource="Resources/cherry_small.jpg"/>
+
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="2.5 2.5 2.5 2.5"/>
+        </Style>
+
+        <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}">
+            <Setter Property="BorderThickness" Value="3"></Setter>
+            <Setter Property="BorderBrush" Value="White"></Setter>
+            <Setter Property="Margin" Value="2.5 2.5 2.5 2.5"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True" Margin="5">
+        <StackPanel DockPanel.Dock="Right" Margin="5 0 0 0">
+            <!--Wood Essence-->
+            <GroupBox Header="Wood Essence">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <RadioButton x:Name="mapleEssenceRadioButton" Background="{StaticResource MapleImageBrush}" Height="38" Width="54" IsChecked="True" Click="woodEssence_Click"/>
+                    <RadioButton x:Name="cherryEssenceRadioButton" Background="{StaticResource CherryImageBrush}" Height="38" Width="54" Click="woodEssence_Click"/>
+                </StackPanel>
+            </GroupBox>
+            <!--Seat Color-->
+            <GroupBox Header="Seat Color">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <RadioButton x:Name="greenColorRadioButton" Background="GreenYellow" Height="32" Width="32" IsChecked="True" Click="seatColor_Click"/>
+                    <RadioButton x:Name="orangeColorRadioButton" Background="DarkOrange" Height="32" Width="32" Click="seatColor_Click"/>
+                    <RadioButton x:Name="blueColorRadioButton" Background="LightSkyBlue" Height="32" Width="32" Click="seatColor_Click"/>
+                    <RadioButton x:Name="pinkColorRadioButton" Background="Pink" Height="32" Width="32" Click="seatColor_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel>
+                <Label Content="Size"/>
+                <Slider Name="sizeTrackBar" Maximum="100" Minimum="26" Value="26" TickFrequency="10" TickPlacement="BottomRight" ValueChanged="sizeTrackBar_ValueChanged"/>
+            </StackPanel>
+
+            <!--Extents-->
+            <GroupBox Header="Extents" Margin="0 5 0 0">
+                <StackPanel>
+                    <DockPanel Margin="0 3 0 0">
+                        <Label DockPanel.Dock="Left" Content="Width"/>
+                        <TextBox DockPanel.Dock="Right" Name="widthTextBox"/>
+                    </DockPanel>
+                    <DockPanel Margin="0 3 0 0">
+                        <Label DockPanel.Dock="Left" Content="Depth"/>
+                        <TextBox DockPanel.Dock="Right" Name="depthTextBox"/>
+                    </DockPanel>
+                    <DockPanel Margin="0 3 0 0">
+                        <Label DockPanel.Dock="Left" Content="Height"/>
+                        <TextBox DockPanel.Dock="Right" Name="heightTextBox"/>
+                    </DockPanel>
+                    <DockPanel Margin="0 3 0 0">
+                        <Label DockPanel.Dock="Left" Content="Weight"/>
+                        <TextBox DockPanel.Dock="Right" Name="weightTextBox"/>
+                    </DockPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Export">
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Name="exportStlButton" Content="STL" Width="65" Margin ="0 5 5 4" Click="exportStlButton_Click"/>
+                    <Button Name="exportObjButton" Content="OBJ" Width="65" Margin ="5 5 0 4" Click="exportObjButton_Click"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <ddes:Model Name="model1">          
+          <ddes:Model.Viewports>
+            <ddes:Viewport>
+              <ddes:Viewport.OriginSymbol>
+                <ddes:OriginSymbol Lighting="False"/>
+              </ddes:Viewport.OriginSymbol>
+              <ddes:Viewport.CoordinateSystemIcon>
+                <ddes:CoordinateSystemIcon Lighting="False"/>
+              </ddes:Viewport.CoordinateSystemIcon>
+              <ddes:Viewport.ViewCubeIcon>
+                <ddes:ViewCubeIcon Lighting="False"/>
+              </ddes:Viewport.ViewCubeIcon>
+              <ddes:Viewport.Background>
+                <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+              </ddes:Viewport.Background>
+              <ddes:Viewport.Grids>
+                <ddes:Grid Step="10" Lighting="False"/>
+              </ddes:Viewport.Grids>
+              <ddes:Viewport.ToolBars>
+                <ddes:ToolBar Position="HorizontalTopCenter">
+                  <ddes:ToolBar.Buttons>
+                    <ddes:HomeToolBarButton/>
+                    <ddes:MagnifyingGlassToolBarButton/>
+                    <ddes:ZoomWindowToolBarButton/>
+                    <ddes:ZoomToolBarButton/>
+                    <ddes:PanToolBarButton/>
+                    <ddes:RotateToolBarButton/>
+                    <ddes:ZoomFitToolBarButton/>
+                  </ddes:ToolBar.Buttons>
+                </ddes:ToolBar>
+              </ddes:Viewport.ToolBars>
+            </ddes:Viewport>
+          </ddes:Model.Viewports>
+        </ddes:Model>
+    </DockPanel>
+</Window>

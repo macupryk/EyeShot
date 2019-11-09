@@ -1,0 +1,74 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddcc="clr-namespace:devDept.Controls.Wpf;assembly=devDept.CustomControls.Wpf"
+        x:Class="WpfApplication1.MainWindow"        
+         Title="Proprietary File Format" Height="690" Width="880" FocusManager.FocusedElement="{Binding ElementName=model1}">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="5 5 0 0"/>
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="5 5 0 0"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True" Margin="5">
+        <StackPanel DockPanel.Dock="Right" MinWidth="80">
+            <Button Name="openButton" Margin="5 0 0 0" Click="openButton_Click">Open</Button>
+            <Button Name="saveButton" Click="saveButton_Click">Save</Button>
+            <CheckBox Name="asyncCheckBox" Margin="5 5 0 0">Async</CheckBox>
+            <Label>Select</Label>
+            <ToggleButton Name="selectChk" Margin="5 5 0 0" Checked="selectChk_CheckedChanged">by Pick</ToggleButton>
+            <Label>Inspection</Label>
+            <Button Click="dumpButton_Click">Dump</Button>
+            <Button Click="statsButton_Click">Stats</Button>
+            <Label>Misc</Label>
+            <ToggleButton Name="regenAsyncChk" Margin="5 5 0 0">RegenAsync</ToggleButton>
+        </StackPanel>
+
+        <ddes:Model Name="model1">
+            <ddes:Model.BoundingBox>
+                <ddes:BoundingBox/>
+            </ddes:Model.BoundingBox>
+            <ddes:Model.Viewports>
+                <ddes:Viewport>
+                    <ddes:Viewport.OriginSymbol>
+                        <ddes:OriginSymbol Lighting="False"/>
+                    </ddes:Viewport.OriginSymbol>
+                    <ddes:Viewport.CoordinateSystemIcon>
+                        <ddes:CoordinateSystemIcon Lighting="False"/>
+                    </ddes:Viewport.CoordinateSystemIcon>
+                    <ddes:Viewport.ViewCubeIcon>
+                        <ddes:ViewCubeIcon Lighting="False"/>
+                    </ddes:Viewport.ViewCubeIcon>
+                    <ddes:Viewport.Background>
+                        <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+                    </ddes:Viewport.Background>
+                    <ddes:Viewport.Grids>
+                        <ddes:Grid Step="10" Lighting="False"/>
+                    </ddes:Viewport.Grids>
+                    <ddes:Viewport.ToolBars>
+                        <ddes:ToolBar Position="HorizontalTopCenter">
+                            <ddes:ToolBar.Buttons>
+                                <ddes:HomeToolBarButton/>
+                                <ddes:MagnifyingGlassToolBarButton/>
+                                <ddes:ZoomWindowToolBarButton/>
+                                <ddes:ZoomToolBarButton/>
+                                <ddes:PanToolBarButton/>
+                                <ddes:RotateToolBarButton/>
+                                <ddes:ZoomFitToolBarButton/>
+                            </ddes:ToolBar.Buttons>
+                        </ddes:ToolBar>
+                    </ddes:Viewport.ToolBars>
+                </ddes:Viewport>
+            </ddes:Model.Viewports>
+        </ddes:Model>
+    </DockPanel>
+</Window>

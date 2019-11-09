@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2012
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SceneEditor", "SceneEditor\SceneEditor.vbproj", "{B9A21C01-2894-4D83-B36C-732DD55938AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9A21C01-2894-4D83-B36C-732DD55938AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A21C01-2894-4D83-B36C-732DD55938AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A21C01-2894-4D83-B36C-732DD55938AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B9A21C01-2894-4D83-B36C-732DD55938AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A21C01-2894-4D83-B36C-732DD55938AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A21C01-2894-4D83-B36C-732DD55938AB}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,242 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+DraftingDemo
+</name>
+</assembly>
+<members>
+<member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+	<summary>
+CreateInstance
+</summary>
+</member><member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+	<summary>
+GetPropertyValue
+</summary>
+</member><member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+	<summary>
+SetPropertyValue
+</summary>
+</member><member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+	<summary>
+CreateDelegate
+</summary>
+</member><member name="M:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+	<summary>
+AddEventHandler
+</summary>
+</member><member name="T:WpfApplication1.XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+	<summary>
+GeneratedInternalTypeHelper
+</summary>
+</member><member name="M:WpfApplication1.Application.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:WpfApplication1.Application.Main">
+	<summary>
+Application Entry Point.
+</summary>
+</member><member name="T:WpfApplication1.Application">
+	<summary>
+Application
+</summary>
+</member><member name="M:WpfApplication1.TangentsWindow.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:WpfApplication1.MainWindow.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:WpfApplication1.DetailsWindow.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="P:WpfApplication1.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:WpfApplication1.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:WpfApplication1.My.Resources.Resources.drafting">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+</summary>
+</member><member name="T:WpfApplication1.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.Application">
+	<summary>
+ Returns the application object for the running application
+ </summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.Computer">
+	<summary>
+ Returns information about the host computer.
+ </summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.User">
+	<summary>
+ Returns information for the current user.  If you wish to run the application with the current 
+ Windows user credentials, call My.User.InitializeWithWindowsUser().
+ </summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.Log">
+	<summary>
+ Returns the application log. The listeners can be configured by the application's configuration file.
+ </summary>
+</member><member name="P:WpfApplication1.My.MyWpfExtension.Windows">
+	<summary>
+ Returns the collection of Windows defined in the project.
+ </summary>
+</member><member name="T:WpfApplication1.My.MyWpfExtension">
+	<summary>
+ Module used to define the properties that are available in the My Namespace for WPF
+ </summary>
+	<remarks></remarks>
+</member><member name="T:WpfApplication1.MainWindow.objectSnapType">
+	<summary>
+ Represents a vetex type from model like center, mid point, etc.
+ </summary>
+</member><member name="T:WpfApplication1.MainWindow">
+	<summary>
+ Interaction logic for MainWindow.xaml
+ </summary>
+</member><member name="T:WpfApplication1.ListViewModelItem">
+	<summary>    
+ This class represent the Model for Layers List.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.ExtendEntity">
+	<summary>
+ Tries to extend entity upto the selected boundary entity. For a short boundary line, it tries to extend selected
+ entity upto elongated line.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.GetExtendedBoundary(devDept.Eyeshot.Entities.ICurve)">
+	<summary>
+ Creates an elongated boundary when it is line.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.GetClosestPoint(devDept.Geometry.Point3D,devDept.Geometry.Point3D[])">
+	<summary>
+ Returns closes point from given input point for provided point list.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.TrimEntity">
+	<summary>
+ Trims selected entity by the cutting entity. Removes portion of the curve near mouse click.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.CreateChamferEntity">
+	<summary>
+ Tries to fit chamfer line between selected curves. Chamfer distance is provided through user input box.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.CreateFilletEntity">
+	<summary>
+ Tries to fit fillet arc between two selected curves. Fillet radius is given from user input box.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.CreateMirrorEntity">
+	<summary>
+ Creates mirror image of the selected entity for given mirror axis. Mirror axis is formed by selection two points.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.CreateOffsetEntity">
+	<summary>
+ Tries to create offset entity for selected entity at the selected location (offset distance) and side.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.MoveEntity">
+	<summary>
+ Translates selected entity for given movement. User needs to select base point and new location.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.ScaleEntity">
+	<summary>
+ Scales selected entities for given scale factor and base point. Base point and scale factor is interactively provided
+ by selecting reference points.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.RotateEntity">
+	<summary>
+ Rotates selected entities by given angle about given center of rotation. Angle is computed similar to drawing arc.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.CreateCompositeCurve">
+	<summary>
+ This function gets all the curve entities selected on the screen and create a composite curve as single entity
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.ClearAllPreviousCommandData">
+	<summary>
+ Clears all previous selections, snapping information etc.
+ </summary>
+</member><member name="M:WpfApplication1.BitnessAgnostic.GetReadAutodesk(devDept.Eyeshot.Model,System.String)">
+	<summary>
+ Gets an instance of the ReadAutodesk class.
+ </summary>
+</member><member name="M:WpfApplication1.BitnessAgnostic.GetWriteAutodesk(devDept.Eyeshot.Model,System.String)">
+	<summary>
+ Gets an instance of the WriteAutodesk class.
+ </summary>
+</member><member name="M:WpfApplication1.BitnessAgnostic.GetWritePDF(devDept.Eyeshot.Model,System.String)">
+	<summary>
+ Gets an instance of the WritePDF class.
+ </summary>
+</member><member name="M:WpfApplication1.BitnessAgnostic.GetFileSerializerEx(System.Nullable{devDept.Serialization.contentType})">
+	<summary>
+ Gets an instance of the FileSerializerEx class.
+ </summary>
+</member><member name="T:WpfApplication1.BitnessAgnostic">
+	<summary>
+ Helper class for dynamic loading of the Eyeshot x86 or x64 assembly.
+ </summary>
+</member><member name="T:WpfApplication1.DetailsWindow">
+	<summary>
+ Interaction logic for DetailsWindow.xaml
+ </summary>
+</member><member name="T:WpfApplication1.TangentsWindow">
+	<summary>
+ Interaction logic for Window1.xaml
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.FindClosestPoint(WpfApplication1.MyModel.SnapPoint[])">
+	<summary>
+ Finds closest snap point.
+ </summary>
+	<param name="snapPoints">Array of snap points</param>
+	<returns>Closest snap point.</returns>
+</member><member name="M:WpfApplication1.MyModel.DisplaySnappedVertex(WpfApplication1.MyModel.SnapPoint)">
+	<summary>
+ Displays symbols associated with the snapped vertex type
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.AddAndRefresh(devDept.Eyeshot.Entities.Entity,System.String)">
+	<summary>
+ Adds entity to scene on active layer and refresh the screen. 
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.SnapToGrid(devDept.Geometry.Point3D@)">
+	<summary>
+ Tries to snap grid vertex for the current mouse point
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.GetNestedEntity(System.Drawing.Point,System.Collections.Generic.IList{devDept.Eyeshot.Entities.Entity},devDept.Geometry.Transformation@)">
+	<summary>
+ Gets the nested entity inside the BlockReference under mouse cursor and computes its transformation
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.GetSnapPoints(System.Drawing.Point)">
+	<summary>
+ identify snapPoints of the entity under mouse cursor in that moment, using PickBoxSize as tolerance
+ </summary>
+</member><member name="T:WpfApplication1.MyModel.SnapPoint">
+	<summary>
+ Represents a 3D point from model vertices and associated snap type.
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.DrawCross(System.Drawing.Point)">
+	<summary>
+ Draw cross. Drawn with a circle identifies a single point
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.DrawCircle(System.Drawing.Point)">
+	<summary>
+ Draw circle with renderContext to rapresent CENTER snap point
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.DrawQuad(System.Drawing.Point)">
+	<summary>
+ Draw quad with renderContext to rapresent END snap point
+ </summary>
+</member><member name="M:WpfApplication1.MyModel.DrawTriangle(System.Drawing.Point)">
+	<summary>
+ Draw triangle with renderContext to rapresent MID snap point
+ </summary>
+</member>
+</members>
+</doc>

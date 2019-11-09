@@ -1,0 +1,64 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        x:Class="WpfApplication1.MainWindow"
+        Title="MainWindow" Height="400" Width="400" FocusManager.FocusedElement="{Binding ElementName=model1}">
+    
+    <Window.Resources>
+        <Style TargetType="Button">            
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Margin" Value="5 0 0 0"/>
+        </Style>      
+    </Window.Resources>
+    
+    <Grid Margin="5">        
+            <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Bottom">
+                <Label Content="Click on the screen to draw a closed selection polygon"/>
+                <StackPanel  Orientation="Horizontal" Margin="0 5 0 0" HorizontalAlignment="Right">
+                    <Button x:Name="deleteButton" Content="Delete" Click="deleteButton_Click"/>
+                    <Button x:Name="undoButton" Content="Undo" Click="undoButton_Click"/>
+                    <Button x:Name="unselectButton" Content="Unselect" Click="unselectButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+            <ddes:Model x:Name="model1">              
+              <ddes:Model.Viewports>
+                <ddes:Viewport>
+                  <ddes:Viewport.OriginSymbol>
+                    <ddes:OriginSymbol Lighting="False"/>
+                  </ddes:Viewport.OriginSymbol>
+                  <ddes:Viewport.CoordinateSystemIcon>
+                    <ddes:CoordinateSystemIcon Lighting="False"/>
+                  </ddes:Viewport.CoordinateSystemIcon>
+                  <ddes:Viewport.ViewCubeIcon>
+                    <ddes:ViewCubeIcon Lighting="False"/>
+                  </ddes:Viewport.ViewCubeIcon>
+                  <ddes:Viewport.Background>
+                    <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+                  </ddes:Viewport.Background>
+                  <ddes:Viewport.Grids>
+                    <ddes:Grid Step="10" Lighting="False"/>
+                  </ddes:Viewport.Grids>
+                  <ddes:Viewport.ToolBars>
+                    <ddes:ToolBar Position="HorizontalTopCenter">
+                      <ddes:ToolBar.Buttons>
+                        <ddes:HomeToolBarButton/>
+                        <ddes:MagnifyingGlassToolBarButton/>
+                        <ddes:ZoomWindowToolBarButton/>
+                        <ddes:ZoomToolBarButton/>
+                        <ddes:PanToolBarButton/>
+                        <ddes:RotateToolBarButton/>
+                        <ddes:ZoomFitToolBarButton/>
+                      </ddes:ToolBar.Buttons>
+                    </ddes:ToolBar>
+                  </ddes:Viewport.ToolBars>
+                </ddes:Viewport>
+              </ddes:Model.Viewports>
+            </ddes:Model>
+        </DockPanel>
+    </Grid> 
+</Window>

@@ -1,0 +1,15 @@
+﻿<Window x:Class="DetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        Title="DetailsWindow" Height="600" Width="500">
+
+    <DockPanel LastChildFill="True" Margin="5 0 5 5">
+        <StackPanel DockPanel.Dock ="Bottom"  Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="copyToClipboardButton" Content="Copy" Margin="0 5 5 0" Width="75" Height="24" HorizontalAlignment="Right" Click="CopyToClipboardButton_OnClick" ></Button>
+            <Button Name="closeButton" Content="Close" Margin="0 5 0 0" Width="75" Height="24" HorizontalAlignment="Right" Click="closeButton_Click"></Button>
+        </StackPanel>
+        <TextBox Name="contentTextBox" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" FontFamily="Courier New"/>
+    </DockPanel>
+
+</Window>

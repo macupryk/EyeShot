@@ -1,0 +1,17 @@
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\bin\Release\RobotArm.exe
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\bin\Release\RobotArm.pdb
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\bin\Release\devDept.Eyeshot.Control.Wpf.v12.dll
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\bin\Release\devDept.Geometry.v12.dll
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\bin\Release\devDept.Graphics.Shaders.v12.dll
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\bin\Release\devDept.Graphics.Wpf.v12.dll
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\RobotArm.csprojResolveAssemblyReference.cache
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\MainWindow.g.cs
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\App.g.cs
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\RobotArm_MarkupCompile.cache
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\RobotArm_MarkupCompile.lref
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\MainWindow.baml
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\RobotArm.g.resources
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\RobotArm.Properties.Resources.resources
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\RobotArm.csproj.GenerateResource.Cache
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\RobotArm.exe
+C:\BuildAgent\work\c5f1640c44a0035e\OtherSamples\Professional\WPF\RobotArm\CSharp\RobotArm\obj\Release\RobotArm.pdb

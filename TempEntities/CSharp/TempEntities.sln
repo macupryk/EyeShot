@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempEntities", "TempEntities\TempEntities.csproj", "{AA5C9BC6-98C7-4B77-9EB0-7048C212C8EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{498C0584-0B97-43E0-A1D5-355CB7564068}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA5C9BC6-98C7-4B77-9EB0-7048C212C8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA5C9BC6-98C7-4B77-9EB0-7048C212C8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA5C9BC6-98C7-4B77-9EB0-7048C212C8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA5C9BC6-98C7-4B77-9EB0-7048C212C8EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

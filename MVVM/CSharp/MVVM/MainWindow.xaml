@@ -1,0 +1,380 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+        xmlns:wpfApplication1="clr-namespace:WpfApplication1"
+        xmlns:models="clr-namespace:WpfApplication1.Models"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        x:Class="WpfApplication1.MainWindow"        
+        Title="MainWindow" Height="600" Width="800" FocusManager.FocusedElement="{Binding ElementName=model1}" FontFamily="{Binding ElementName=cmbFonts, Path=SelectedItem}">
+
+    <Window.Resources>
+        <wpfApplication1:ColorTableToStringConverter x:Key="ColorTableToStringConv" />
+        <wpfApplication1:ColorToBrushConverter x:Key="ColorToBrushConv"/>
+        <wpfApplication1:ColorToDrawingColorConverter x:Key="ColorToDrawingColorConv"/>
+        <wpfApplication1:ViewportEnumsToStringConverter x:Key="ViewportEnumsToStringConv"/>
+        <wpfApplication1:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="Margin" Value="5 2 5 2"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Margin" Value="5 2 5 2"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Margin" Value="5 2 5 2"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>       
+
+        <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource {x:Type Slider}}">
+            <Setter Property="TickPlacement" Value="None"></Setter>
+            <Setter Property="IsSnapToTickEnabled" Value="True"></Setter>
+            <Setter Property="TickFrequency" Value="1"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Margin" Value="5 2 5 2"></Setter>
+            <Setter Property="Height" Value="20"></Setter>
+        </Style>
+
+        <Style x:Key="ImageButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="Height" Value="32"></Setter>
+            <Setter Property="Width" Value="32"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type xctk:ColorPicker}">
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Margin" Value="5 2 5 2"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <!--Set MyViewModel as DataContext-->
+    <Window.DataContext>
+        <wpfApplication1:MyViewModel/>
+    </Window.DataContext>
+
+    <DockPanel LastChildFill="True" Margin="5">
+        <ScrollViewer DockPanel.Dock="Right" Width="180" Margin="0 0 5 0">
+            <StackPanel>
+                <Label>Font Family</Label>
+                <ComboBox
+                  Name="cmbFonts"
+                  Margin="5 2 5 2"
+                  SelectedItem="{Binding FontFamily}"
+                  VerticalAlignment="Center"
+                  ItemTemplate="{DynamicResource FontTemplate}">
+                    <ComboBox.Resources>
+
+                        <CollectionViewSource x:Key="myFonts" Source="{Binding Source={x:Static Fonts.SystemFontFamilies}}">
+                            <CollectionViewSource.SortDescriptions>
+                                <componentModel:SortDescription PropertyName="Source" />
+                            </CollectionViewSource.SortDescriptions>
+                        </CollectionViewSource>
+
+                        <Style x:Key="FontStyle">
+                            <Setter Property="Control.FontFamily" Value="{Binding Source}" />                            
+                        </Style>
+
+                        <DataTemplate x:Key="FontTemplate">
+                            <StackPanel VirtualizingStackPanel.IsVirtualizing="True">
+                                <TextBlock Style="{StaticResource FontStyle}"
+                                   Text="{Binding Source}"
+                                   ToolTip="{Binding Source}" />
+                            </StackPanel>
+                        </DataTemplate>
+
+                    </ComboBox.Resources>
+
+                    <ComboBox.ItemsSource>
+                        <Binding Source="{StaticResource myFonts}" />
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+                <CheckBox Margin="5" x:Name="chkAutoRefresh" IsChecked="{Binding AutoRefresh}">Auto Refresh</CheckBox>
+                <DockPanel>
+                    <CheckBox x:Name="chkLighting"  IsChecked="{Binding Lighting, Mode=TwoWay}">Lighting</CheckBox>
+                    <ComboBox x:Name="colorThemeTypes" Width="Auto" Margin="5 2 5 2" SelectedItem="{Binding ColorThemeType}" IsEnabled="{Binding ElementName=chkLighting, Path=IsChecked, Converter={StaticResource InverseBooleanConverter}}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource ViewportEnumsToStringConv}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </DockPanel>                
+                <Label>Display Mode</Label>
+                <ComboBox x:Name="displayTypes" Width="Auto" Margin="5 2 5 2" SelectedItem="{Binding DisplayType}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource ViewportEnumsToStringConv}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label>Action Mode</Label>
+                <ComboBox x:Name="actionTypes" Width="Auto" Margin="5 2 5 2" SelectedItem="{Binding ActionType}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource ViewportEnumsToStringConv}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label>Selection Color</Label>
+                <xctk:ColorPicker SelectedColor="{Binding SelectionColor}"/>
+                <Expander Header="Legend" Margin="5">
+                    <StackPanel>
+                        <CheckBox x:Name="chkLegendVisible" IsChecked="{Binding LegendVisible, Mode=TwoWay}">Visible</CheckBox>                        
+                        <ComboBox x:Name="colors" Width="Auto" Margin="5" SelectionChanged="Colors_OnSelectionChanged"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource ColorTableToStringConv}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                            <x:Static Member="ddes:Legend.RedToBlue9"/>
+                            <x:Static Member="ddes:Legend.RedToBlue17"/>
+                            <x:Static Member="ddes:Legend.RedToBlue33"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="Background" Margin="5">
+                    <StackPanel>
+                        <Label >Style Mode</Label>
+                        <ComboBox x:Name="styles" Width="Auto" Margin="5 2 5 2" SelectedItem="{Binding BackgroundStyle}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource ViewportEnumsToStringConv}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label  Visibility="{Binding TopColorVisibility}">Top Color</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding TopColor}" Visibility="{Binding TopColorVisibility}"/>
+                        <Label  Visibility="{Binding IntermediateColorVisibility}">Intermediate Color</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding IntermediateColor}" Visibility="{Binding IntermediateColorVisibility}"/>
+                        <TextBlock Text="{Binding IntermediateColorPosition, StringFormat='Position (0 - 100): {0}'}" Visibility="{Binding IntermediateColorVisibility}"/>
+                        <Slider Maximum="100" Minimum="0" TickFrequency="1" Value="{Binding IntermediateColorPosition}" Visibility="{Binding IntermediateColorVisibility}"/>
+                        <Label  Visibility="{Binding BottomColorVisibility}">Bottom Color</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding BottomColor}" Visibility="{Binding BottomColorVisibility}"/>                        
+                        <Label  Visibility="{Binding ImagesVisibility}">Images</Label>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding ImagesVisibility}">
+                            <ToggleButton x:Name="btnImage1" IsChecked="True" Style="{StaticResource ImageButtonStyle}" Click="BtnImage_OnClick">
+                                <Image x:Name="Image1" Source="{Binding Image1}" Stretch="UniformToFill"/>
+                            </ToggleButton>
+                            <ToggleButton x:Name="btnImage2" Style="{StaticResource ImageButtonStyle}" Click="BtnImage_OnClick">
+                                <Image x:Name="Image2" Source="{Binding Image2}" Stretch="UniformToFill"/>
+                            </ToggleButton>
+                            <ToggleButton x:Name="btnImage3" Style="{StaticResource ImageButtonStyle}" Click="BtnImage_OnClick">
+                                <Image x:Name="Image3" Source="{Binding Image3}" Stretch="UniformToFill"/>
+                            </ToggleButton>
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="Grid" Margin="5">
+                    <StackPanel>
+                        <CheckBox IsChecked="{Binding GridVisible}">Visible</CheckBox>
+                        <CheckBox IsChecked="{Binding GridAlwaysBehind}">Always Behind</CheckBox>
+                        <TextBlock Text="{Binding GridStep, StringFormat='Step (0 - 100): {0}'}"/>
+                        <Slider Value="{Binding GridStep}" Minimum="1" Maximum="100"></Slider>
+                        <CheckBox IsChecked="{Binding GridAutoSize}">Auto Size</CheckBox>
+                        <CheckBox IsChecked="{Binding GridAutoStep}">Auto Step</CheckBox>
+                        <TextBlock Text="{Binding GridMinNumberOfLines, StringFormat='MinNumberOfLines&#10;(1 - 100): {0}'}" Visibility="{Binding GridNumberOfLinesVisibility}"/>
+                        <Slider Value="{Binding GridMinNumberOfLines}" Minimum="1" Maximum="100" Visibility="{Binding GridNumberOfLinesVisibility}"></Slider>
+                        <TextBlock Text="{Binding GridMaxNumberOfLines, StringFormat='MaxNumberOfLines&#10;(1 - 100): {0}'}" Visibility="{Binding GridNumberOfLinesVisibility}"/>
+                        <Slider Value="{Binding GridMaxNumberOfLines}" Minimum="1" Maximum="100" Visibility="{Binding GridNumberOfLinesVisibility}"></Slider>
+                        <Label Visibility="{Binding LightingVisibility}">LineColor</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding GridLineColor}" Visibility="{Binding LightingVisibility}"/>
+                        <Label Visibility="{Binding LightingVisibility}">ColorAxisX</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding GridColorAxisX}" Visibility="{Binding LightingVisibility}"/>
+                        <Label Visibility="{Binding LightingVisibility}">ColorAxisY</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding GridColorAxisY}" Visibility="{Binding LightingVisibility}"/>
+                        <Label>FillColor</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding GridFillColor}"/>
+                        <Label Visibility="{Binding LightingVisibility}">MajorLineColor</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding GridMajorLineColor}" Visibility="{Binding LightingVisibility}"/>
+                        <TextBlock Text="{Binding GridMajorLinesEvery, StringFormat='MajorLinesEvery&#10;(1 - 50): {0}'}"/>
+                        <Slider Value="{Binding GridMajorLinesEvery}" Minimum="1" Maximum="50"></Slider>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="Coordinate System" Margin="5">
+                    <StackPanel>
+                        <CheckBox IsChecked="{Binding CsiVisible}">Visible</CheckBox>
+                        <Label >Position</Label>
+                        <ComboBox x:Name="csiPositionTypes" Width="Auto" Margin="5 2 5 2" SelectedItem="{Binding CsiPositionType}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource ViewportEnumsToStringConv}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label>Label Color</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding CsiLabelColor}"/>
+                        <Label>Label X</Label>
+                        <TextBox Text="{Binding CsiLabelX}"/>
+                        <Label Visibility="{Binding LightingVisibility}">Arrow X Color</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding CsiArrowColorX}" Visibility="{Binding LightingVisibility}"/>
+                        <Label>Label Y</Label>
+                        <TextBox Text="{Binding CsiLabelY}"/>
+                        <Label Visibility="{Binding LightingVisibility}">Arrow Y Color</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding CsiArrowColorY}" Visibility="{Binding LightingVisibility}"/>
+                        <Label>Label Z</Label>
+                        <TextBox Text="{Binding CsiLabelZ}"/>
+                        <Label Visibility="{Binding LightingVisibility}">Arrow Z Color</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding CsiArrowColorZ}" Visibility="{Binding LightingVisibility}"/>
+                                                                        
+                    </StackPanel>
+                </Expander>
+                <Expander Header="Origin Symbol" Margin="5">
+                    <StackPanel>
+                        <CheckBox IsChecked="{Binding OsVisible}">Visible</CheckBox>
+                        <Label >Style Mode</Label>
+                        <ComboBox x:Name="osStyleTypes" Width="Auto" Margin="5 2 5 2" SelectedItem="{Binding OsStyleType}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource ViewportEnumsToStringConv}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <StackPanel Visibility="{Binding OsArrowVisibility}">
+                            <Label Visibility="{Binding LightingVisibility}">Label Color</Label>
+                            <xctk:ColorPicker SelectedColor="{Binding OsLabelColor}" Visibility="{Binding LightingVisibility}"/>
+                            <Label>Label X</Label>
+                            <TextBox Text="{Binding OsLabelX}"/>
+                            <Label>Arrow X Color</Label>
+                            <xctk:ColorPicker SelectedColor="{Binding OsArrowColorX}"/>
+                            <Label>Label Y</Label>
+                            <TextBox Text="{Binding OsLabelY}"/>
+                            <Label>Arrow Y Color</Label>
+                            <xctk:ColorPicker SelectedColor="{Binding OsArrowColorY}"/>
+                            <Label>Label Z</Label>
+                            <TextBox Text="{Binding OsLabelZ}"/>
+                            <Label>Arrow Z Color</Label>
+                            <xctk:ColorPicker SelectedColor="{Binding OsArrowColorZ}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="View Cube" Margin="5">
+                    <StackPanel>
+                        <CheckBox IsChecked="{Binding ViewCubeVisible}">Visible</CheckBox>
+                        <CheckBox IsChecked="{Binding ViewCubeShowRing}">Show Ring</CheckBox>
+                        <Label Visibility="{Binding VcLabelVisibility}">Color</Label>
+                        <xctk:ColorPicker SelectedColor="{Binding ViewCubeColor}" Visibility="{Binding LightingVisibility}"/>
+                        <Label>Image</Label>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="btnVcResetImages" Style="{StaticResource ImageButtonStyle}" IsChecked="True" Click="BtnVcImage_OnClick" Checked="BtnVcResetImages_OnChecked">                                
+                                <TextBlock Text="FRONT" FontSize="5" Foreground="White"></TextBlock>
+                            </ToggleButton>
+                            <ToggleButton x:Name="btnVcImage1" Style="{StaticResource ImageButtonStyle}" Click="BtnVcImage_OnClick" Checked="BtnVcImage1_OnChecked">
+                                <Image x:Name="VcImage1" Source="{Binding VcImage1}" Stretch="UniformToFill"/>
+                            </ToggleButton>
+                            <ToggleButton x:Name="btnVcImage2" Style="{StaticResource ImageButtonStyle}" Click="BtnVcImage_OnClick" Checked="BtnVcImage2_OnChecked">
+                                <Image x:Name="VcImage2" Source="{Binding VcImage2}" Stretch="UniformToFill"/>
+                            </ToggleButton>
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding VcLabelVisibility}">
+                            <Label>Front Text</Label>
+                            <TextBox Text="{Binding FrontLabel}"/>
+                            <Label>Back Text</Label>
+                            <TextBox Text="{Binding BackLabel}"/>
+                            <Label>Top Text</Label>
+                            <TextBox Text="{Binding TopLabel}"/>
+                            <Label>Bottom Text</Label>
+                            <TextBox Text="{Binding BottomLabel}"/>
+                            <Label>Left Text</Label>
+                            <TextBox Text="{Binding LeftLabel}"/>
+                            <Label>Right Text</Label>
+                            <TextBox Text="{Binding RightLabel}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="Toolbar" Margin="5">
+                    <StackPanel>
+                        <CheckBox IsChecked="{Binding TbVisible}">Visible</CheckBox>
+                        <Label >Position</Label>
+                        <ComboBox x:Name="tbPositionTypes" Width="Auto" Margin="5 2 5 2" SelectedItem="{Binding TbPositionType}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource ViewportEnumsToStringConv}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label>Show/Hide buttons:</Label>
+                        <CheckBox IsChecked="{Binding HomeButtonVisible}">Home</CheckBox>
+                        <CheckBox IsChecked="{Binding MagnifyingGlassButtonVisible}">MagnifyingGlass</CheckBox>
+                        <CheckBox IsChecked="{Binding ZoomWindowButtonVisible}">ZoomWindow</CheckBox>
+                        <CheckBox IsChecked="{Binding ZoomButtonVisible}">Zoom</CheckBox>
+                        <CheckBox IsChecked="{Binding PanButtonVisible}">Pan</CheckBox>
+                        <CheckBox IsChecked="{Binding RotateButtonVisible}">Rotate</CheckBox>
+                        <CheckBox IsChecked="{Binding ZoomFitButtonVisible}">ZoomFit</CheckBox>
+                        <CheckBox IsChecked="{Binding CustomButtonVisible}" Visibility="{Binding CustomButtonVisibility}">Custom</CheckBox>
+                        <Button Command="{Binding AddToolbarButtonCommand}" >Add custom button</Button>
+                        <Button Command="{Binding RemoveToolbarButtonCommand}">Remove custom button</Button>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="30" Margin="0 5 0 0">
+                <Button x:Name="btnAddEntity" Width="150" Click="BtnAddEntity_OnClick">Add New Entity</Button>
+                <Button x:Name="btnRemoveEntities" Margin="5 0 0 0" Width="150" Click="BtnRemoveEntities_OnClick">Remove selected Entities</Button>
+            </StackPanel>
+            <models:MyModel x:Name="model1" 
+                                     MinWidth="300"
+                                     MyEntityList="{Binding EntityList}" 
+                                     AutoRefresh="{Binding AutoRefresh}"
+                                     ActionMode="{Binding ActionType}"
+                                     SelectionColor="{Binding SelectionColor, Converter={StaticResource ColorToDrawingColorConv}}"
+                                     FontFamily="{Binding FontFamily}">
+                <models:MyModel.Viewports>
+                 <ddes:Viewport 
+                     DisplayMode="{Binding DisplayType}"                     
+                     Background="{Binding MyBackgroundSettings}"
+                     Grids="{Binding MyGrids}"
+                     CoordinateSystemIcon="{Binding MyCoordinateSystemIcon}"
+                     OriginSymbol="{Binding MyOriginSymbol}"
+                     ToolBars="{Binding MyToolBars}">
+                        <ddes:Viewport.ViewCubeIcon>
+                            <ddes:ViewCubeIcon Visible="{Binding ViewCubeVisible}"
+                                               Lighting="{Binding Lighting}"
+                                               ShowRing="{Binding ViewCubeShowRing}"
+                                               FrontColor="{Binding ViewCubeColor, Converter={StaticResource ColorToBrushConv}}"
+                                               BackColor="{Binding ViewCubeColor, Converter={StaticResource ColorToBrushConv}}"
+                                               TopColor="{Binding ViewCubeColor, Converter={StaticResource ColorToBrushConv}}"
+                                               BottomColor="{Binding ViewCubeColor, Converter={StaticResource ColorToBrushConv}}"
+                                               RightColor="{Binding ViewCubeColor, Converter={StaticResource ColorToBrushConv}}"
+                                               LeftColor="{Binding ViewCubeColor, Converter={StaticResource ColorToBrushConv}}"
+                                               FrontText="{Binding FrontLabel}"
+                                               BackText="{Binding BackLabel}"
+                                               TopText="{Binding TopLabel}"
+                                               BottomText="{Binding BottomLabel}"
+                                               RightText="{Binding RightLabel}"
+                                               LeftText="{Binding LeftLabel}"
+                                               FrontImage="{Binding VcFaceImages[0]}"
+                                               BackImage="{Binding VcFaceImages[1]}"
+                                               TopImage="{Binding VcFaceImages[2]}"
+                                               BottomImage="{Binding VcFaceImages[3]}"
+                                               LeftImage="{Binding VcFaceImages[4]}"
+                                               RightImage="{Binding VcFaceImages[5]}"/>
+                        </ddes:Viewport.ViewCubeIcon>
+                        <ddes:Viewport.Legends>
+                            <ddes:Legend Title="{Binding LegendTitle}"
+                                         Subtitle="{Binding LegendSubtitle}"                                         
+                                         ColorTable="{Binding ElementName=colors, Path=SelectedItem}" 
+                                         ItemSize="{Binding LegendItemSize}"
+                                         Lighting="{Binding Lighting}"  
+                                         Visible="{Binding LegendVisible}"
+                                         />
+                        </ddes:Viewport.Legends>
+                    </ddes:Viewport>
+            </models:MyModel.Viewports>
+        </models:MyModel>
+        </DockPanel>
+    </DockPanel>
+</Window>

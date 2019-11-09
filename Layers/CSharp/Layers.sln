@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Layers", "Layers\Layers.csproj", "{8E51E0D7-4A47-4953-9EAC-6C8CBED88A25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls.Wpf", "..\..\..\dataset\CustomControls\CustomControls.Wpf.csproj", "{F5F681FD-8301-4176-8C65-DE181FBE0970}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E51E0D7-4A47-4953-9EAC-6C8CBED88A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E51E0D7-4A47-4953-9EAC-6C8CBED88A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E51E0D7-4A47-4953-9EAC-6C8CBED88A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E51E0D7-4A47-4953-9EAC-6C8CBED88A25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F681FD-8301-4176-8C65-DE181FBE0970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F681FD-8301-4176-8C65-DE181FBE0970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F681FD-8301-4176-8C65-DE181FBE0970}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F681FD-8301-4176-8C65-DE181FBE0970}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7260C575-4E1D-4612-9425-DA140D8F4D81}
+	EndGlobalSection
+EndGlobal

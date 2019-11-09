@@ -1,0 +1,68 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control" 
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        x:Class="MainWindow"        
+        Title="MainWindow" Height="400" Width="480" FocusManager.FocusedElement="{Binding ElementName=model1}">
+
+  <Window.Resources>
+    
+    
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+      <Setter Property="Width" Value="75"/>
+      <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+  </Window.Resources>
+
+  <DockPanel LastChildFill="True" Margin="5">
+    <StackPanel DockPanel.Dock="Right" Margin="5 0 0 0">
+      <Button x:Name="pageSetupButton" Click="pageSetupButton_Click">Page Setup</Button>
+      <ComboBox x:Name="comboBoxPrintMode" Margin="0 5 0 0" SelectionChanged="comboBoxPrintMode_SelectionChanged">
+        <ComboBoxItem Content="Vector"/>
+        <ComboBoxItem Content="Raster"/>
+      </ComboBox>
+      <Button x:Name="printButton" Margin="0 5 0 0" Click="printButton_Click">Print</Button>
+      <Button x:Name="exportToEMFButton" Margin="0 5 0 0" Click="exportToEMFButton_Click">Export</Button>
+    </StackPanel>
+    <ddes:Model DockPanel.Dock="Left" Name="model1" WorkCompleted="model1_WorkCompleted">
+      <ddes:Model.ProgressBar>
+        <ddes:ProgressBar Lighting ="False"></ddes:ProgressBar>
+      </ddes:Model.ProgressBar>
+      <ddes:Model.Viewports>
+        <ddes:Viewport>
+          <ddes:Viewport.OriginSymbol>
+            <ddes:OriginSymbol Lighting="False"/>
+          </ddes:Viewport.OriginSymbol>
+          <ddes:Viewport.CoordinateSystemIcon>
+            <ddes:CoordinateSystemIcon Lighting="False"/>
+          </ddes:Viewport.CoordinateSystemIcon>
+          <ddes:Viewport.ViewCubeIcon>
+            <ddes:ViewCubeIcon Lighting="False"/>
+          </ddes:Viewport.ViewCubeIcon>
+          <ddes:Viewport.Background>
+            <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+          </ddes:Viewport.Background>
+          <ddes:Viewport.Grids>
+            <ddes:Grid Step="10" Lighting="False"/>
+          </ddes:Viewport.Grids>
+          <ddes:Viewport.ToolBars>
+            <ddes:ToolBar Position="HorizontalTopCenter">
+              <ddes:ToolBar.Buttons>
+                <ddes:HomeToolBarButton/>
+                <ddes:MagnifyingGlassToolBarButton/>
+                <ddes:ZoomWindowToolBarButton/>
+                <ddes:ZoomToolBarButton/>
+                <ddes:PanToolBarButton/>
+                <ddes:RotateToolBarButton/>
+                <ddes:ZoomFitToolBarButton/>
+              </ddes:ToolBar.Buttons>
+            </ddes:ToolBar>
+          </ddes:Viewport.ToolBars>
+        </ddes:Viewport>
+      </ddes:Model.Viewports>
+    </ddes:Model>
+  </DockPanel>
+
+</Window>

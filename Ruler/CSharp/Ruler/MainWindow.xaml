@@ -1,0 +1,45 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ddes="http://schemas.devdept.com/winfx/2008/xaml/control"
+        xmlns:ddgr="http://schemas.devdept.com/winfx/2008/xaml/graphics"
+        xmlns:ddds="http://schemas.devdept.com/winfx/2008/xaml/dataset"
+        xmlns:wpfApplication1="clr-namespace:WpfApplication1"        
+        x:Class="WpfApplication1.MainWindow"        
+        Title="MainWindow" Height="400" Width="400" FocusManager.FocusedElement="{Binding ElementName=model1}">
+
+    <Grid Margin="5">
+        <wpfApplication1:MyModel x:Name="model1">          
+          <wpfApplication1:MyModel.Viewports>
+                <ddes:Viewport>                    
+                    <ddes:Viewport.OriginSymbol>
+                        <ddes:OriginSymbol Lighting="False"/>
+                    </ddes:Viewport.OriginSymbol>
+                    <ddes:Viewport.CoordinateSystemIcon>
+                        <ddes:CoordinateSystemIcon Lighting="False"/>
+                    </ddes:Viewport.CoordinateSystemIcon>
+                    <ddes:Viewport.ViewCubeIcon>
+                        <ddes:ViewCubeIcon Lighting="False"/>
+                    </ddes:Viewport.ViewCubeIcon>
+                    <ddes:Viewport.Background>
+                        <ddgr:BackgroundSettings StyleMode="Solid"  TopColor="WhiteSmoke"/>
+                    </ddes:Viewport.Background>
+                    <ddes:Viewport.Grids>
+                        <ddes:Grid Step="10" Lighting="False"/>
+                    </ddes:Viewport.Grids>
+                    <ddes:Viewport.ToolBars>
+                        <ddes:ToolBar Position="VerticalMiddleRight">
+                            <ddes:ToolBar.Buttons>
+                                <ddes:MagnifyingGlassToolBarButton/>
+                                <ddes:ZoomWindowToolBarButton/>
+                                <ddes:ZoomToolBarButton/>
+                                <ddes:PanToolBarButton/>
+                                <ddes:ZoomFitToolBarButton/>
+                            </ddes:ToolBar.Buttons>
+                        </ddes:ToolBar>
+                    </ddes:Viewport.ToolBars>
+                </ddes:Viewport>
+            </wpfApplication1:MyModel.Viewports>
+        </wpfApplication1:MyModel>
+    </Grid>
+</Window>
